@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=10 format=3 uid="uid://crjmnfjjo4j16"]
 
-[ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://ship.gd" id="1_0bpjf"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
+[ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://ship.tscn" id="1_0bpjf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1gpl"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -34,23 +32,8 @@ sky = SubResource("Sky_p0uuu")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Ship" type="CharacterBody3D" parent="."]
+[node name="Ship" parent="." instance=ExtResource("1_0bpjf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_0bpjf")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Ship"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship"]
-shape = SubResource("BoxShape3D_u1gpl")
-
-[node name="CameraMount" type="Node3D" parent="Ship"]
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Ship/CameraMount"]
-transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
-spring_length = 5.0
-
-[node name="Camera3D" type="Camera3D" parent="Ship/CameraMount/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="Sea" type="StaticBody3D" parent="."]
 
