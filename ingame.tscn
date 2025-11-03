@@ -33,17 +33,18 @@ sky = SubResource("Sky_p0uuu")
 [node name="Node3D" type="Node3D"]
 
 [node name="Ship" parent="." instance=ExtResource("1_0bpjf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 447.503)
 
 [node name="Sea" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sea"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 mesh = SubResource("PlaneMesh_0bpjf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sea"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_0bpjf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -57,16 +58,22 @@ shadow_enabled = true
 [node name="Env" type="Node3D" parent="."]
 
 [node name="MainIsland" type="CSGCylinder3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.0150509, -0.603179, 16.7553)
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.0150528, -0.603179, 453.081)
 
-[node name="IslandA" type="CSGCylinder3D" parent="Env"]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 12.7773, -0.603179, 2.76221)
+[node name="Island1" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0.156775, -0.603179, 137.054)
 
-[node name="IslandB" type="CSGCylinder3D" parent="Env"]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -12.0414, -0.603179, -2.71263)
+[node name="Island2" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -224.772, -0.603179, -83.4362)
 
-[node name="IslandC" type="CSGCylinder3D" parent="Env"]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 4.0448, -0.603179, -16.8267)
+[node name="Island3" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -64.5331, -0.603179, -353.151)
+
+[node name="Island4" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 192.27, -0.603179, -191.92)
+
+[node name="Island5" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 363.715, -0.603179, 63.4241)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
@@ -76,3 +83,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.46036, 0.425343, -1.
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="path" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 53.5118, 0.804002, 0, -72.354, 0.594626, 0, 36.7698, -49.7169)
+height = 3.37427
