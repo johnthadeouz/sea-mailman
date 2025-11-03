@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://crjmnfjjo4j16"]
+
+[ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://ship.gd" id="1_0bpjf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1gpl"]
+albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0bpjf"]
+material = SubResource("StandardMaterial3D_u1gpl")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0bpjf"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="Gradient" id="Gradient_u1gpl"]
+colors = PackedColorArray(1, 0.645806, 0.615196, 1, 0.957458, 0.930351, 0.894251, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bpjf"]
+gradient = SubResource("Gradient_u1gpl")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.395604)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_62bee"]
+panorama = SubResource("GradientTexture2D_0bpjf")
+
+[sub_resource type="Sky" id="Sky_p0uuu"]
+sky_material = SubResource("PanoramaSkyMaterial_62bee")
+
+[sub_resource type="Environment" id="Environment_wnhdf"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_p0uuu")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ship" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_0bpjf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ship"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship"]
+shape = SubResource("BoxShape3D_u1gpl")
+
+[node name="CameraMount" type="Node3D" parent="Ship"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Ship/CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="Ship/CameraMount/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Sea" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sea"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0bpjf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sea"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_0bpjf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wnhdf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.00372108, 0.613569, -0.789632, 0.00289136, 0.789641, 0.613562, 0.999989, 1.62246e-10, -0.00471237, -9.68634, 6, -0.157907)
+light_color = Color(1, 0.541176, 0.556863, 1)
+shadow_enabled = true
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="MainIsland" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.0150509, -0.603179, 16.7553)
+
+[node name="IslandA" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 12.7773, -0.603179, 2.76221)
+
+[node name="IslandB" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -12.0414, -0.603179, -2.71263)
+
+[node name="IslandC" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 4.0448, -0.603179, -16.8267)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.46036, 0.425343, -1.0914)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
