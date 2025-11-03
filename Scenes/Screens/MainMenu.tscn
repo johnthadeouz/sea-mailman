@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c56x8a6fojmrx"]
+[gd_scene load_steps=11 format=3 uid="uid://c56x8a6fojmrx"]
 
 [ext_resource type="Script" uid="uid://c63cl75dx3xx7" path="res://Scripts/main_menu.gd" id="1_60bxw"]
 
@@ -28,6 +28,9 @@ background_energy_multiplier = 0.5
 sky = SubResource("Sky_p0uuu")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ckq4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60bxw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_60bxw")
@@ -76,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.145098, 0.145098, 0.145098, 0.494118)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
 anchors_preset = -1
 anchor_top = 0.591
 anchor_right = 0.364
@@ -85,28 +88,71 @@ offset_left = 35.0
 offset_right = 35.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 5
+scale = Vector2(0.998897, 0.99035)
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="Play" type="Button" parent="Menu/VBoxContainer"]
+[node name="Play" type="Button" parent="Menu/Buttons"]
 custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Play"
 
-[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu/Buttons"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Settings
 "
 
-[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
+[node name="Quit" type="Button" parent="Menu/Buttons"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit
 "
 
-[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Settings" type="PanelContainer" parent="Menu"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60bxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 25
+
+[node name="Frames" type="PanelContainer" parent="Menu/Settings/MarginContainer"]
+custom_minimum_size = Vector2(1100, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+
+[node name="Buttons" type="HBoxContainer" parent="Menu/Settings/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Button" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Mouse & Keyboard"
+
+[node name="Button2" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Mouse & Keyboard"
+
+[node name="Button3" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Mouse & Keyboard"
+
+[connection signal="pressed" from="Menu/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Quit" to="." method="_on_quit_pressed"]
