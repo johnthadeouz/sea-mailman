@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://crjmnfjjo4j16"]
 
-[ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://ship.tscn" id="1_0bpjf"]
+[ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/ship.tscn" id="1_oybcm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1gpl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0bpjf"]
-material = SubResource("StandardMaterial3D_u1gpl")
+material = SubResource("StandardMaterial3D_0bpjf")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0bpjf"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -14,13 +14,13 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="Gradient" id="Gradient_u1gpl"]
 colors = PackedColorArray(1, 0.645806, 0.615196, 1, 0.957458, 0.930351, 0.894251, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bpjf"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_62bee"]
 gradient = SubResource("Gradient_u1gpl")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.395604)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_62bee"]
-panorama = SubResource("GradientTexture2D_0bpjf")
+panorama = SubResource("GradientTexture2D_62bee")
 
 [sub_resource type="Sky" id="Sky_p0uuu"]
 sky_material = SubResource("PanoramaSkyMaterial_62bee")
@@ -32,7 +32,7 @@ sky = SubResource("Sky_p0uuu")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Ship" parent="." instance=ExtResource("1_0bpjf")]
+[node name="Ship" parent="." instance=ExtResource("1_oybcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Sea" type="StaticBody3D" parent="."]

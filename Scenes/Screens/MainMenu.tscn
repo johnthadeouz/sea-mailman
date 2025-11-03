@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://c56x8a6fojmrx"]
+
+[ext_resource type="Script" uid="uid://c63cl75dx3xx7" path="res://Scripts/main_menu.gd" id="1_60bxw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1gpl"]
+albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7u1fx"]
+material = SubResource("StandardMaterial3D_u1gpl")
+
+[sub_resource type="Gradient" id="Gradient_a1jv6"]
+colors = PackedColorArray(1, 0.645806, 0.615196, 1, 0.957458, 0.930351, 0.894251, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bpjf"]
+gradient = SubResource("Gradient_a1jv6")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.395604)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_f35bi"]
+panorama = SubResource("GradientTexture2D_0bpjf")
+
+[sub_resource type="Sky" id="Sky_p0uuu"]
+sky_material = SubResource("PanoramaSkyMaterial_f35bi")
+
+[sub_resource type="Environment" id="Environment_441x2"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_p0uuu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ckq4q"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_60bxw")
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_7u1fx")
+skeleton = NodePath("../..")
+
+[node name="IslandB" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -12.0414, -0.603179, -2.71263)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.46036, 0.425343, -1.0914)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_441x2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.00372108, 0.613569, -0.789632, 0.00289136, 0.789641, 0.613562, 0.999989, 3.02683e-09, -0.00471237, -9.68634, 6, -0.157907)
+light_color = Color(1, 0.541176, 0.556863, 1)
+shadow_enabled = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(3.87212, 0, -0.419399, 0, 2.10606, 0, 1.04891, 0, 1.54823, -6.63147, 0.122441, 5.06548)
+mesh = SubResource("BoxMesh_ckq4q")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.699252, 0, -0.714876, 0, 1, 0, 0.714876, 0, 0.699252, -13.9277, 2.34701, 5.02283)
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.145098, 0.145098, 0.494118)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+anchors_preset = -1
+anchor_top = 0.591
+anchor_right = 0.364
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Play" type="Button" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit
+"
+
+[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
