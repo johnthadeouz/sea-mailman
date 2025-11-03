@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sea Mailman"
-run/main_scene="uid://crjmnfjjo4j16"
+run/main_scene="uid://c56x8a6fojmrx"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
