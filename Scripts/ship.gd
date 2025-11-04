@@ -29,5 +29,4 @@ func _physics_process(delta: float) -> void:
 	var turn = Input.get_axis("turn-right", "turn-left")
 	rotate_y(turn * ROTATION_SPEED * delta)
 	
-	print(velocity)
 	move_and_slide()
