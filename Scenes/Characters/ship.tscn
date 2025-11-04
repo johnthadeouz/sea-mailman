@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyjawbxftc6wx"]
+
+[ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://Scripts/ship.gd" id="1_l3rv8"]
+[ext_resource type="Script" uid="uid://e3cp45lg3p4i" path="res://Scripts/siren_area_3d.gd" id="2_aytw0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
+size = Vector3(2, 2, 3)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_djks8"]
+radius = 5.0
+
+[node name="Ship" type="CharacterBody3D"]
+script = ExtResource("1_l3rv8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(2, 1.135, 3)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.397207)
+size = Vector3(0.75, 1, 1.30054)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647053, 0)
+shape = SubResource("BoxShape3D_u1gpl")
+
+[node name="CameraMount" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+spring_length = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 8)
+
+[node name="SirenArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("2_aytw0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SirenArea3D"]
+shape = SubResource("SphereShape3D_djks8")
+
+[connection signal="body_entered" from="SirenArea3D" to="SirenArea3D" method="_on_siren_entered"]
