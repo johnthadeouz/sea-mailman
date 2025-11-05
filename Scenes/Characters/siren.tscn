@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://j2t7j1fwk5t2" path="res://Scripts/siren.gd" id="1_ramef"]
 [ext_resource type="Script" uid="uid://c7atctvribcv2" path="res://Scripts/label_3d.gd" id="2_qfrjp"]
-[ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://expansive_ring.tscn" id="3_k3gl0"]
+[ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://Scenes/expansive_ring.tscn" id="3_k3gl0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ramef"]
 albedo_color = Color(1, 0, 0.192157, 1)

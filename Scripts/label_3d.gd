@@ -3,10 +3,9 @@ extends Label3D
 var state_string = {
 	0:"IDLING",
 	1:"PATROLLING",
-	2:"CHASING",
-	3:"PREP_SWARMING",
-	4:"SWARMING",
-	5:"FLEEING",
+	2:"PREP_SWARMING",
+	3:"SWARMING",
+	4:"FLEEING",
 }
 
 func update(state:int):
