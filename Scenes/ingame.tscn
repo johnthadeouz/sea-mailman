@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=12 format=3 uid="uid://crjmnfjjo4j16"]
 
 [ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/ship.tscn" id="1_oybcm"]
+[ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="2_vmfbn"]
+[ext_resource type="PackedScene" uid="uid://n2qfembh1n07" path="res://Scenes/package_goal.tscn" id="3_kd26p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -32,8 +34,12 @@ sky = SubResource("Sky_p0uuu")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Ship" parent="." instance=ExtResource("1_oybcm")]
+[node name="Ship" parent="." node_paths=PackedStringArray("package") instance=ExtResource("1_oybcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+package = NodePath("Package")
+
+[node name="Package" parent="Ship" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776663, 0.532119, 0.0596089)
 
 [node name="Sea" type="StaticBody3D" parent="."]
 
@@ -58,21 +64,43 @@ shadow_enabled = true
 
 [node name="MainIsland" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.0150509, -0.603179, 16.7553)
+layers = 4
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="IslandA" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 12.7773, -0.603179, 2.76221)
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="IslandB" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -12.0414, -0.603179, -2.71263)
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="IslandC" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 4.0448, -0.603179, -16.8267)
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.46036, 0.425343, -1.0914)
+use_collision = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="PackageGoal" parent="." instance=ExtResource("3_kd26p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0374, 0.001465, -11.3865)

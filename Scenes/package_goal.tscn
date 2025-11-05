@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://n2qfembh1n07"]
+
+[ext_resource type="Script" uid="uid://bquqlpx3fiaoj" path="res://Scripts/package_goal.gd" id="1_8a4wx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pt55h"]
+height = 2.18118
+radius = 1.62939
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8a4wx"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="PackageGoal" type="Area3D"]
+script = ExtResource("1_8a4wx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11006, 0)
+shape = SubResource("CylinderShape3D_pt55h")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117981, 0)
+radius = 1.52148
+height = 0.238892
+material = SubResource("StandardMaterial3D_8a4wx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

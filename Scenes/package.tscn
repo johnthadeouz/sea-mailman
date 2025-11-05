@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cig7bgd3jxxrn"]
+
+[ext_resource type="Script" uid="uid://ba4wc4nn5eo5i" path="res://Scripts/package.gd" id="1_gkk3b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkk3b"]
+albedo_color = Color(0.504392, 0.322927, 0, 1)
+
+[node name="Package" type="Node3D"]
+script = ExtResource("1_gkk3b")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_gkk3b")

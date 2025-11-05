@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c56x8a6fojmrx"]
+[gd_scene load_steps=11 format=3 uid="uid://c56x8a6fojmrx"]
 
 [ext_resource type="Script" uid="uid://c63cl75dx3xx7" path="res://Scripts/main_menu.gd" id="1_60bxw"]
-[ext_resource type="PackedScene" uid="uid://crjmnfjjo4j16" path="res://Scenes/ingame.tscn" id="2_7u1fx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1gpl"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -35,7 +34,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_60bxw")
-level_Scene = ExtResource("2_7u1fx")
 
 [node name="Env" type="Node3D" parent="."]
 
@@ -82,7 +80,6 @@ grow_vertical = 2
 color = Color(0.145098, 0.145098, 0.145098, 0.494118)
 
 [node name="Buttons" type="VBoxContainer" parent="Menu"]
-visible = false
 anchors_preset = -1
 anchor_top = 0.591
 anchor_right = 0.364
@@ -123,69 +120,52 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60bxw")
 
-[node name="Frames" type="MarginContainer" parent="Menu/Settings"]
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 25
 
-[node name="MnKFrame" type="PanelContainer" parent="Menu/Settings/Frames"]
+[node name="MnKFrame" type="PanelContainer" parent="Menu/Settings/MarginContainer"]
 custom_minimum_size = Vector2(1100, 550)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 12
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings/Frames/MnKFrame"]
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings/MarginContainer/MnKFrame"]
 layout_mode = 2
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VideoFrame" type="PanelContainer" parent="Menu/Settings/Frames"]
-custom_minimum_size = Vector2(1100, 550)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 12
-
-[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings/Frames/VideoFrame"]
-layout_mode = 2
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="ResolutionButton" type="OptionButton" parent="Menu/Settings/Frames/VideoFrame/MarginContainer"]
+[node name="OptionButton" type="OptionButton" parent="Menu/Settings/MarginContainer/MnKFrame/MarginContainer"]
 custom_minimum_size = Vector2(500, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 40
 alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "1920x0180"
+popup/item_0/id = 0
+popup/item_1/id = 0
 
-[node name="AudioFrame" type="PanelContainer" parent="Menu/Settings/Frames"]
-custom_minimum_size = Vector2(1100, 550)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 12
-
-[node name="MarginContainer" type="MarginContainer" parent="Menu/Settings/Frames/AudioFrame"]
-layout_mode = 2
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="Buttons" type="HBoxContainer" parent="Menu/Settings/Frames"]
+[node name="Buttons" type="HBoxContainer" parent="Menu/Settings/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="MnkSettings" type="Button" parent="Menu/Settings/Frames/Buttons"]
+[node name="Button" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Mouse & Keyboard"
 
-[node name="VideoSettings" type="Button" parent="Menu/Settings/Frames/Buttons"]
+[node name="Button2" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Video"
 
-[node name="AudioSettings" type="Button" parent="Menu/Settings/Frames/Buttons"]
+[node name="Button3" type="Button" parent="Menu/Settings/MarginContainer/Buttons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Audio"
@@ -193,7 +173,3 @@ text = "Audio"
 [connection signal="pressed" from="Menu/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/Buttons/Quit" to="." method="_on_quit_pressed"]
-[connection signal="item_selected" from="Menu/Settings/Frames/VideoFrame/MarginContainer/ResolutionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="Menu/Settings/Frames/Buttons/MnkSettings" to="." method="_on_mnk_settings_pressed"]
-[connection signal="pressed" from="Menu/Settings/Frames/Buttons/VideoSettings" to="." method="_on_video_settings_pressed"]
-[connection signal="pressed" from="Menu/Settings/Frames/Buttons/AudioSettings" to="." method="_on_audio_settings_pressed"]

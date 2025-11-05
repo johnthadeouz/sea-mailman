@@ -1,11 +1,13 @@
 extends CharacterBody3D
-
+class_name Ship
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ACCELERATION = 4
 const FRICTION = 2
 const ROTATION_SPEED = 2.0
+
+@export var package: Package
 
 func _physics_process(delta: float) -> void:
 
@@ -30,3 +32,14 @@ func _physics_process(delta: float) -> void:
 	rotate_y(turn * ROTATION_SPEED * delta)
 
 	move_and_slide()
+	
+func deliver_package():
+	if package:
+		print("Package delivered")
+		package.queue_free()
+
+
+func _on_hitbox_body_entered(body) -> void:
+	if body.get_collision_layer_value(4):
+		package.take_damage(10)
+	
