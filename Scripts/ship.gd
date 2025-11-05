@@ -20,13 +20,20 @@ var under_attack = false:
 			$AnimationPlayer.play("normal_camera_mode")
 			hide_honk()
 
+@export var package: Package
+
+signal package_collected(package: Package)
+
 func show_honk():
 	$HonkArea3D.visible = true
 	$HonkArea3D.rotation_degrees.y = 0
 	
 func hide_honk():
 	$HonkArea3D.visible = false
-	
+
+func _ready() -> void:
+	if package:
+		package.position = $Marker3D.global_position
 
 func _physics_process(delta: float) -> void:
 
@@ -53,9 +60,18 @@ func _physics_process(delta: float) -> void:
 	else:#turning horn (combat only)
 		$HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
 	move_and_slide()
+	
+func deliver_package():
+	if package:
+		print("Package delivered")
+		package.queue_free()
 
 
-
+func _on_hitbox_body_entered(body) -> void:
+	if body.get_collision_layer_value(1) and package and !body.name == "Sea":
+		package.take_damage(10)
+	
+	
 func _input(event: InputEvent) -> void:
 	if not under_attack:
 		return
@@ -70,3 +86,10 @@ func _input(event: InputEvent) -> void:
 
 func _on_honk_timer_timeout() -> void:
 	is_honking = false
+
+
+func _on_collect_area_body_entered(body) -> void:
+	if body.is_in_group("Package") and !package:
+		var package_root = body.get_parent()
+		package = package_root
+		package_collected.emit(package_root)

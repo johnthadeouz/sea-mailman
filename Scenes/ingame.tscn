@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=19 format=3 uid="uid://crjmnfjjo4j16"]
 
+[ext_resource type="Script" uid="uid://cbr05c5mc5oii" path="res://Scripts/ingame.gd" id="1_jy764"]
 [ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/Characters/ship.tscn" id="1_oybcm"]
 [ext_resource type="PackedScene" uid="uid://wa1gqtcg7gdu" path="res://Scenes/Islands/main_island.tscn" id="2_kd26p"]
 [ext_resource type="PackedScene" uid="uid://ccgre0covjepg" path="res://Scenes/Islands/island_1.tscn" id="2_lq36l"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c664w6exxqphv" path="res://Scenes/Islands/island_3.tscn" id="4_35pev"]
 [ext_resource type="PackedScene" uid="uid://cpwh40qfl0wi0" path="res://Scenes/Islands/island_4.tscn" id="5_jy764"]
 [ext_resource type="PackedScene" uid="uid://b76x3ma37j1ss" path="res://Scenes/Islands/island_5.tscn" id="6_csxpc"]
+[ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="9_35pev"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -38,6 +40,7 @@ background_energy_multiplier = 0.5
 sky = SubResource("Sky_p0uuu")
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_jy764")
 
 [node name="Ship" parent="." instance=ExtResource("1_oybcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -221.194, 1, 342.006)
@@ -124,3 +127,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5881, 0, 319.807)
 
 [node name="Siren3" parent="Sirens" instance=ExtResource("2_vmfbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4918, 0, 319.807)
+
+[node name="Package" parent="." instance=ExtResource("9_35pev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -226.851, -0.199326, 332.444)
+
+[connection signal="package_collected" from="Ship" to="." method="_on_ship_package_collected"]

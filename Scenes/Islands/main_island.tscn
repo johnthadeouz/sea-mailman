@@ -4,6 +4,8 @@
 
 [node name="Terrain" type="CSGCylinder3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, -0.0150528, -0.603179, -1.41506)
+use_collision = true
+collision_mask = 4
 
 [node name="Lighthouse" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.03624, 4.25073, -7.23406)
