@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dyjawbxftc6wx"]
+[gd_scene load_steps=19 format=3 uid="uid://dyjawbxftc6wx"]
 
 [ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://Scripts/ship.gd" id="1_l3rv8"]
 [ext_resource type="Script" uid="uid://e3cp45lg3p4i" path="res://Scripts/siren_area_3d.gd" id="2_aytw0"]
@@ -7,21 +7,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
 size = Vector3(2, 2, 3)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xbtsy"]
-radius = 1.038
-height = 5.0
-
-[sub_resource type="Gradient" id="Gradient_vxtu7"]
-offsets = PackedFloat32Array(0.0695187, 0.475936, 1)
-colors = PackedColorArray(0, 0.266667, 0.556863, 1, 0.492289, 0.658804, 0.938646, 0.898039, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m85f0"]
-gradient = SubResource("Gradient_vxtu7")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_djks8"]
-radius = 5.0
 
 [sub_resource type="Shader" id="Shader_vxtu7"]
 resource_local_to_scene = true
@@ -204,7 +189,29 @@ _data = {
 &"ortogonal_camera_mode": SubResource("Animation_vxtu7")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xbtsy"]
+radius = 1.038
+height = 5.0
+
+[sub_resource type="Gradient" id="Gradient_vxtu7"]
+offsets = PackedFloat32Array(0.0695187, 0.475936, 1)
+colors = PackedColorArray(0, 0.266667, 0.556863, 1, 0.492289, 0.658804, 0.938646, 0.898039, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m85f0"]
+gradient = SubResource("Gradient_vxtu7")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_djks8"]
+radius = 5.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m85f0"]
+size = Vector3(2.11374, 1, 3.23898)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wthq7"]
+
 [node name="Ship" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_l3rv8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -226,29 +233,6 @@ spring_length = 8.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 8)
-
-[node name="HonkArea3D" type="Area3D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("2_vxtu7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HonkArea3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2.7)
-shape = SubResource("CapsuleShape3D_xbtsy")
-
-[node name="Sprite3D" type="Sprite3D" parent="HonkArea3D"]
-transform = Transform3D(3.01007, 0, 0, 0, -3.2631e-07, 1, 0, -7.4651, -4.37114e-08, 0.011, 0.247, -2.455)
-texture = SubResource("GradientTexture2D_m85f0")
-
-[node name="SirenArea3D" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-script = ExtResource("2_aytw0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SirenArea3D"]
-shape = SubResource("SphereShape3D_djks8")
 
 [node name="HonkTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -274,8 +258,54 @@ libraries = {
 &"": SubResource("AnimationLibrary_m85f0")
 }
 
-[connection signal="body_entered" from="HonkArea3D" to="HonkArea3D" method="_on_siren_entered"]
-[connection signal="body_exited" from="HonkArea3D" to="HonkArea3D" method="_on_siren_exited"]
-[connection signal="body_entered" from="SirenArea3D" to="SirenArea3D" method="_on_siren_entered"]
-[connection signal="body_exited" from="SirenArea3D" to="SirenArea3D" method="_on_body_exited"]
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0369975, 0.614706, 1.44878)
+
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="HonkArea3D" type="Area3D" parent="Areas"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_vxtu7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/HonkArea3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2.7)
+shape = SubResource("CapsuleShape3D_xbtsy")
+
+[node name="Sprite3D" type="Sprite3D" parent="Areas/HonkArea3D"]
+transform = Transform3D(3.01007, 0, 0, 0, -3.2631e-07, 1, 0, -7.4651, -4.37114e-08, 0.011, 0.247, -2.455)
+texture = SubResource("GradientTexture2D_m85f0")
+
+[node name="SirenArea3D" type="Area3D" parent="Areas"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("2_aytw0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/SirenArea3D"]
+shape = SubResource("SphereShape3D_djks8")
+
+[node name="Hitbox" type="Area3D" parent="Areas"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700378, 0, 0.0122223)
+shape = SubResource("BoxShape3D_m85f0")
+
+[node name="CollectArea" type="Area3D" parent="Areas"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/CollectArea"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("BoxShape3D_wthq7")
+
 [connection signal="timeout" from="HonkTimer" to="." method="_on_honk_timer_timeout"]
+[connection signal="body_entered" from="Areas/HonkArea3D" to="Areas/HonkArea3D" method="_on_siren_entered"]
+[connection signal="body_exited" from="Areas/HonkArea3D" to="Areas/HonkArea3D" method="_on_siren_exited"]
+[connection signal="body_entered" from="Areas/SirenArea3D" to="Areas/SirenArea3D" method="_on_siren_entered"]
+[connection signal="body_exited" from="Areas/SirenArea3D" to="Areas/SirenArea3D" method="_on_body_exited"]
+[connection signal="body_entered" from="Areas/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Areas/CollectArea" to="." method="_on_collect_area_body_entered"]

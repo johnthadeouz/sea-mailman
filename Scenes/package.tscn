@@ -5,8 +5,11 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkk3b"]
 albedo_color = Color(0.504392, 0.322927, 0, 1)
 
-[node name="Package" type="Node3D"]
+[node name="Package" type="Node3D" groups=["Package"]]
 script = ExtResource("1_gkk3b")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["Package"]]
+use_collision = true
+collision_layer = 8
+collision_mask = 4
 material = SubResource("StandardMaterial3D_gkk3b")

@@ -4,5 +4,7 @@
 
 [node name="Terrain" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.230777, 0)
+use_collision = true
+collision_mask = 4
 radius = 5.0
 height = 0.719299
