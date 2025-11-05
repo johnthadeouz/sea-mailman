@@ -84,6 +84,11 @@ sprint={
 3d_physics/layer_3="Siren"
 3d_physics/layer_4="Object"
 
+[layer_names]
+
+3d_physics/layer_1="Collision Layer"
+3d_physics/layer_2="Siren Layer"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

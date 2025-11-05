@@ -1,8 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=17 format=3 uid="uid://crjmnfjjo4j16"]
 
-[ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/ship.tscn" id="1_oybcm"]
-[ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="2_vmfbn"]
-[ext_resource type="PackedScene" uid="uid://n2qfembh1n07" path="res://Scenes/package_goal.tscn" id="3_kd26p"]
+[ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/Characters/ship.tscn" id="1_oybcm"]
+[ext_resource type="PackedScene" uid="uid://wa1gqtcg7gdu" path="res://Scenes/Islands/main_island.tscn" id="2_kd26p"]
+[ext_resource type="PackedScene" uid="uid://ccgre0covjepg" path="res://Scenes/Islands/island_1.tscn" id="2_lq36l"]
+[ext_resource type="PackedScene" uid="uid://ckko2inq8bbdl" path="res://Scenes/Characters/siren.tscn" id="2_vmfbn"]
+[ext_resource type="PackedScene" uid="uid://b0csw8ic48fvd" path="res://Scenes/Islands/island_2.tscn" id="3_mpua3"]
+[ext_resource type="PackedScene" uid="uid://c664w6exxqphv" path="res://Scenes/Islands/island_3.tscn" id="4_35pev"]
+[ext_resource type="PackedScene" uid="uid://cpwh40qfl0wi0" path="res://Scenes/Islands/island_4.tscn" id="5_jy764"]
+[ext_resource type="PackedScene" uid="uid://b76x3ma37j1ss" path="res://Scenes/Islands/island_5.tscn" id="6_csxpc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -42,14 +47,16 @@ package = NodePath("Package")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776663, 0.532119, 0.0596089)
 
 [node name="Sea" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sea"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 mesh = SubResource("PlaneMesh_0bpjf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sea"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_0bpjf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -57,7 +64,7 @@ environment = SubResource("Environment_wnhdf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.00372108, 0.613569, -0.789632, 0.00289136, 0.789641, 0.613562, 0.999989, 1.62246e-10, -0.00471237, -9.68634, 6, -0.157907)
-light_color = Color(1, 0.541176, 0.556863, 1)
+light_color = Color(1, 0.702557, 0.703833, 1)
 shadow_enabled = true
 
 [node name="Env" type="Node3D" parent="."]
@@ -87,20 +94,58 @@ use_collision = true
 collision_layer = 8
 collision_mask = 2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+[node name="Island3" parent="Env/Islands" instance=ExtResource("4_35pev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.9896, 0, -353.26)
+
+[node name="Island4" parent="Env/Islands" instance=ExtResource("5_jy764")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.395, 0, -191.751)
+
+[node name="Island5" parent="Env/Islands" instance=ExtResource("6_csxpc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.834, 0, 63.0592)
+
+[node name="MainIsland" parent="Env/Islands" instance=ExtResource("2_kd26p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.337, 0, 356.351)
+
+[node name="SeaDeco" type="Node3D" parent="Env"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/SeaDeco"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 use_collision = true
 collision_layer = 8
 collision_mask = 2
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/SeaDeco"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.46036, 0.425343, -1.0914)
 use_collision = true
 collision_layer = 8
 collision_mask = 2
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Env/SeaDeco"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
 [node name="PackageGoal" parent="." instance=ExtResource("3_kd26p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0374, 0.001465, -11.3865)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Env/SeaDeco"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.155, 0.356756, 256.058)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Env/SeaDeco"]
+transform = Transform3D(0.61, 0, 0, 0, 0.54, 0, 0, 0, 0.57, -129.072, 0, 256.502)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Env/SeaDeco"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.033, 0, 317.248)
+inner_radius = 2.0
+outer_radius = 4.0
+
+[node name="Sirens" type="Node3D" parent="."]
+
+[node name="Siren4" parent="Sirens" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.033, 0, 317.248)
+
+[node name="Siren1" parent="Sirens" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.975, 0, 256.058)
+
+[node name="Siren2" parent="Sirens" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5881, 0, 319.807)
+
+[node name="Siren3" parent="Sirens" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4918, 0, 319.807)

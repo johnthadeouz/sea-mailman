@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b76x3ma37j1ss"]
+
+[node name="Island5" type="Node3D"]
+
+[node name="Terrain" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.230777, 0)
+radius = 5.0
+height = 0.719299
