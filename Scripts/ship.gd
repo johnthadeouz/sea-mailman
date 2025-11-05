@@ -14,12 +14,19 @@ var under_attack = false:
 		if val:
 			can_move = false
 			$AnimationPlayer.play("ortogonal_camera_mode")
+			show_honk()
 		else:
 			can_move = true
 			$AnimationPlayer.play("normal_camera_mode")
-		
+			hide_honk()
 
-
+func show_honk():
+	$HonkArea3D.visible = true
+	$HonkArea3D.rotation_degrees.y = 0
+	
+func hide_honk():
+	$HonkArea3D.visible = false
+	
 
 func _physics_process(delta: float) -> void:
 

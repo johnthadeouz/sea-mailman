@@ -9,7 +9,6 @@ const JUMP_VELOCITY = 4.5
 enum state{
 	IDLING,
 	PATROLLING,
-	CHASING,
 	PREP_SWARMING,
 	SWARMING,
 	FLEEING,
@@ -67,7 +66,6 @@ func start_attacking(boat:CharacterBody3D):
 	
 
 
-var chasing_duration_in_secs = 5
 func chase_ship(boat:CharacterBody3D):
 	current_state = state.PATROLLING
 	await get_tree().create_timer(1.0).timeout
