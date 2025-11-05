@@ -1,11 +1,25 @@
 extends CharacterBody3D
-
+class_name Ship
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ACCELERATION = 4
 const FRICTION = 2
 const ROTATION_SPEED = 2.0
+var can_move = true
+var is_honking = false
+var under_attack = false:
+	set(val):
+		under_attack = val
+		if val:
+			can_move = false
+			$AnimationPlayer.play("ortogonal_camera_mode")
+		else:
+			can_move = true
+			$AnimationPlayer.play("normal_camera_mode")
+		
+
+
 
 func _physics_process(delta: float) -> void:
 
@@ -16,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	#Moving boat
 	var vy = velocity.y
 	velocity.y = 0
-	if Input.get_action_strength("move-front"):
+	if can_move and Input.get_action_strength("move-front"):
 		var direction = -transform.basis.z.normalized()
 		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION * delta)
 		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION * delta)
@@ -25,8 +39,27 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, FRICTION * delta)
 	velocity.y = vy
 
-	#Turning Boat
-	var turn = Input.get_axis("turn-right", "turn-left")
-	rotate_y(turn * ROTATION_SPEED * delta)
 	
+	var turn = Input.get_axis("turn-right", "turn-left")
+	if can_move:#Turning Boat
+		rotate_y(turn * ROTATION_SPEED * delta)
+	else:#turning horn (combat only)
+		$HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
 	move_and_slide()
+
+
+
+func _input(event: InputEvent) -> void:
+	if not under_attack:
+		return
+	if Input.is_action_just_pressed("siren-counterattack"):
+		if not is_honking:
+			$Node3D/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
+			is_honking = true
+			print("HOOOOONK!")
+			$HonkArea3D.interrupt_siren_song()
+			$HonkTimer.start()
+
+
+func _on_honk_timer_timeout() -> void:
+	is_honking = false

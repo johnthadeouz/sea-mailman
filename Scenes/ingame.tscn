@@ -106,6 +106,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.155, 0.356756, 256.058)
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Env/SeaDeco"]
 transform = Transform3D(0.61, 0, 0, 0, 0.54, 0, 0, 0, 0.57, -129.072, 0, 256.502)
 
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Env/SeaDeco"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.033, 0, 317.248)
+inner_radius = 2.0
+outer_radius = 4.0
+
 [node name="Sirens" type="Node3D" parent="."]
 
 [node name="Siren4" parent="Sirens" instance=ExtResource("2_vmfbn")]

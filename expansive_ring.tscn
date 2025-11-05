@@ -1,0 +1,197 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5rnngoxn83jb"]
+
+[ext_resource type="Shader" uid="uid://d0erfebk0ff2m" path="res://Shaders/circle.gdshader" id="1_64j4j"]
+[ext_resource type="Script" uid="uid://btvpb5e0hro8c" path="res://expansive_ring.gd" id="2_118fx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_118fx"]
+resource_local_to_scene = true
+shader = ExtResource("1_64j4j")
+shader_parameter/ring_radius = 0.1
+shader_parameter/thickness_scalar = 0.0
+shader_parameter/oscillation_scalar = 0.05
+shader_parameter/speed = 0.0
+shader_parameter/main_color = Color(1, 1, 1, 1)
+shader_parameter/lerp_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_chx8s"]
+resource_name = "expand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ring_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(0.435275, 1.36604, 1),
+"update": 0,
+"values": [0.1, 0.42, 0.45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/thickness_scalar")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.526667, 1),
+"transitions": PackedFloat32Array(0.732043, 1, 1),
+"update": 0,
+"values": [0.99, 0.25, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pw1uy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ring_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/thickness_scalar")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_118fx"]
+resource_name = "expand_siren"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ring_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.733333),
+"transitions": PackedFloat32Array(0.435275, 1.36604, 1),
+"update": 0,
+"values": [0.1, 0.42, 0.45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/thickness_scalar")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.393333, 0.733333),
+"transitions": PackedFloat32Array(0.732043, 1, 1),
+"update": 0,
+"values": [0.99, 0.25, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e7q05"]
+resource_name = "prepare_siren_song"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ring_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 0.435275),
+"update": 0,
+"values": [0.1, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/thickness_scalar")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 0.732043),
+"update": 0,
+"values": [0.0, 0.99]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/speed")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_iwc0g"]
+resource_name = "interrupt_song"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ring_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/thickness_scalar")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7q05"]
+_data = {
+&"RESET": SubResource("Animation_pw1uy"),
+&"expand": SubResource("Animation_chx8s"),
+&"expand_siren": SubResource("Animation_118fx"),
+&"interrupt_song": SubResource("Animation_iwc0g"),
+&"prepare_siren_song": SubResource("Animation_e7q05")
+}
+
+[node name="ColorRect" type="ColorRect"]
+material = SubResource("ShaderMaterial_118fx")
+offset_right = 400.0
+offset_bottom = 400.0
+script = ExtResource("2_118fx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e7q05")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
