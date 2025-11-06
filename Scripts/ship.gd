@@ -19,6 +19,12 @@ var under_attack = false:
 			can_move = true
 			$AnimationPlayer.play("normal_camera_mode")
 			hide_honk()
+			$SirenSlots.clean_slots()
+
+
+func append_slave_and_get_position():
+	return $SirenSlots.append_slave_and_get_position()
+
 
 func show_honk():
 	$HonkArea3D.visible = true
@@ -61,7 +67,7 @@ func _input(event: InputEvent) -> void:
 		return
 	if Input.is_action_just_pressed("siren-counterattack"):
 		if not is_honking:
-			$Node3D/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
+			$HonkParticle/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
 			is_honking = true
 			print("HOOOOONK!")
 			$HonkArea3D.interrupt_siren_song()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dyjawbxftc6wx"]
+[gd_scene load_steps=18 format=3 uid="uid://dyjawbxftc6wx"]
 
 [ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://Scripts/ship.gd" id="1_l3rv8"]
-[ext_resource type="Script" uid="uid://e3cp45lg3p4i" path="res://Scripts/siren_area_3d.gd" id="2_aytw0"]
+[ext_resource type="Script" uid="uid://e3cp45lg3p4i" path="res://Scripts/combat_area_3d.gd" id="2_aytw0"]
 [ext_resource type="Script" uid="uid://btpwh64va4si" path="res://Scripts/honk_area_3d.gd" id="2_vxtu7"]
 [ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://Scenes/expansive_ring.tscn" id="3_xbtsy"]
+[ext_resource type="Script" uid="uid://ceqnham0tb8lf" path="res://Scripts/siren_slots.gd" id="5_m85f0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
 size = Vector3(2, 2, 3)
@@ -23,7 +24,7 @@ fill_from = Vector2(1, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_djks8"]
 radius = 5.0
 
-[sub_resource type="Shader" id="Shader_vxtu7"]
+[sub_resource type="Shader" id="Shader_m85f0"]
 resource_local_to_scene = true
 code = "//shader_type canvas_item;
 //uniform float circle_size = 0.5f;
@@ -69,7 +70,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ruy1k"]
 resource_local_to_scene = true
-shader = SubResource("Shader_vxtu7")
+shader = SubResource("Shader_m85f0")
 shader_parameter/ring_radius = 0.1
 shader_parameter/thickness_scalar = 0.0
 shader_parameter/oscillation_scalar = 0.05
@@ -78,7 +79,7 @@ shader_parameter/main_color = Color(1, 1, 1, 1)
 shader_parameter/lerp_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xbtsy"]
-viewport_path = NodePath("Node3D/SubViewport")
+viewport_path = NodePath("HonkParticle/SubViewport")
 
 [sub_resource type="Animation" id="Animation_m85f0"]
 length = 0.001
@@ -230,7 +231,7 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 
 [node name="HonkArea3D" type="Area3D" parent="."]
 visible = false
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("2_vxtu7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HonkArea3D"]
@@ -241,31 +242,29 @@ shape = SubResource("CapsuleShape3D_xbtsy")
 transform = Transform3D(3.01007, 0, 0, 0, -3.2631e-07, 1, 0, -7.4651, -4.37114e-08, 0.011, 0.247, -2.455)
 texture = SubResource("GradientTexture2D_m85f0")
 
-[node name="SirenArea3D" type="Area3D" parent="."]
+[node name="CombatArea3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("2_aytw0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SirenArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CombatArea3D"]
 shape = SubResource("SphereShape3D_djks8")
 
 [node name="HonkTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-
-[node name="Node3D" type="Node3D" parent="."]
+[node name="HonkParticle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80762, 0, 0)
 
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
+[node name="SubViewport" type="SubViewport" parent="HonkParticle"]
 transparent_bg = true
 size = Vector2i(400, 400)
 
-[node name="ExpansiveRing" parent="Node3D/SubViewport" instance=ExtResource("3_xbtsy")]
+[node name="ExpansiveRing" parent="HonkParticle/SubViewport" instance=ExtResource("3_xbtsy")]
 material = SubResource("ShaderMaterial_ruy1k")
 
-[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
+[node name="Sprite3D" type="Sprite3D" parent="HonkParticle"]
 transform = Transform3D(-2, -2.87194e-07, -8.4483e-16, 0, -8.31391e-08, 0.128, -3.01992e-07, 1.902, 5.59506e-09, 2.84247, 1.76193, 0)
 texture = SubResource("ViewportTexture_xbtsy")
 
@@ -274,8 +273,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_m85f0")
 }
 
+[node name="SirenSlots" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02381, 0)
+script = ExtResource("5_m85f0")
+
+[node name="0" type="Marker3D" parent="SirenSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="1" type="Marker3D" parent="SirenSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36688, 0, 0)
+
+[node name="2" type="Marker3D" parent="SirenSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585938, 0, 3.36389)
+
+[node name="3" type="Marker3D" parent="SirenSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585938, 0, -3.47607)
+
 [connection signal="body_entered" from="HonkArea3D" to="HonkArea3D" method="_on_siren_entered"]
 [connection signal="body_exited" from="HonkArea3D" to="HonkArea3D" method="_on_siren_exited"]
-[connection signal="body_entered" from="SirenArea3D" to="SirenArea3D" method="_on_siren_entered"]
-[connection signal="body_exited" from="SirenArea3D" to="SirenArea3D" method="_on_body_exited"]
+[connection signal="body_entered" from="CombatArea3D" to="CombatArea3D" method="_on_siren_entered"]
+[connection signal="body_exited" from="CombatArea3D" to="CombatArea3D" method="_on_body_exited"]
 [connection signal="timeout" from="HonkTimer" to="." method="_on_honk_timer_timeout"]

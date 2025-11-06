@@ -56,7 +56,8 @@ siren-counterattack={
 [layer_names]
 
 3d_physics/layer_1="Collision Layer"
-3d_physics/layer_2="Siren Layer"
+3d_physics/layer_2="Master Siren Layer"
+3d_physics/layer_3="Slave Siren Layer"
 
 [rendering]
 
