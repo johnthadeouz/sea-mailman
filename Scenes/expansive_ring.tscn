@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5rnngoxn83jb"]
 
-[ext_resource type="Shader" uid="uid://d0erfebk0ff2m" path="res://Shaders/circle.gdshader" id="1_64j4j"]
-[ext_resource type="Script" uid="uid://btvpb5e0hro8c" path="res://Scripts/expansive_ring.gd" id="2_118fx"]
+[ext_resource type="Shader" uid="uid://d0erfebk0ff2m" path="res://Shaders/circle.gdshader" id="1_5132y"]
+[ext_resource type="Script" uid="uid://btvpb5e0hro8c" path="res://Scripts/expansive_ring.gd" id="2_6qbhf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_118fx"]
 resource_local_to_scene = true
-shader = ExtResource("1_64j4j")
+shader = ExtResource("1_5132y")
 shader_parameter/ring_radius = 0.1
 shader_parameter/thickness_scalar = 0.0
 shader_parameter/oscillation_scalar = 0.05
@@ -187,7 +187,7 @@ _data = {
 material = SubResource("ShaderMaterial_118fx")
 offset_right = 400.0
 offset_bottom = 400.0
-script = ExtResource("2_118fx")
+script = ExtResource("2_6qbhf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

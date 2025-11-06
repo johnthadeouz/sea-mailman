@@ -19,21 +19,29 @@ var under_attack = false:
 			can_move = true
 			$AnimationPlayer.play("normal_camera_mode")
 			hide_honk()
+			$SirenSlots.clean_slots()
+
+
+func append_slave_and_get_position():
+	return $SirenSlots.append_slave_and_get_position()
+
 
 @export var package: Package
 
 signal package_collected(package: Package)
 
 func show_honk():
-	$HonkArea3D.visible = true
-	$HonkArea3D.rotation_degrees.y = 0
+	$Areas/HonkArea3D.visible = true
+	$Areas/HonkArea3D.rotation_degrees.y = 0
 	
 func hide_honk():
-	$HonkArea3D.visible = false
+	$Areas/HonkArea3D.visible = false
 
 func _ready() -> void:
 	if package:
 		package.position = $Marker3D.global_position
+	$Areas/SirenArea3D.ship = self
+	$Areas/HonkArea3D.ship = self
 
 func _physics_process(delta: float) -> void:
 
@@ -58,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	if can_move:#Turning Boat
 		rotate_y(turn * ROTATION_SPEED * delta)
 	else:#turning horn (combat only)
-		$HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
+		$Areas/HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
 	move_and_slide()
 	
 func deliver_package():
@@ -77,10 +85,10 @@ func _input(event: InputEvent) -> void:
 		return
 	if Input.is_action_just_pressed("siren-counterattack"):
 		if not is_honking:
-			$Node3D/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
+			$HonkParticle/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
 			is_honking = true
 			print("HOOOOONK!")
-			$HonkArea3D.interrupt_siren_song()
+			$Areas/HonkArea3D.interrupt_siren_song()
 			$HonkTimer.start()
 
 

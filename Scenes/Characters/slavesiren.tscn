@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckko2inq8bbdl"]
+[gd_scene load_steps=9 format=3 uid="uid://cprqf7k4gj0s"]
 
-[ext_resource type="Script" uid="uid://j2t7j1fwk5t2" path="res://Scripts/siren.gd" id="1_ramef"]
-[ext_resource type="Script" uid="uid://c7atctvribcv2" path="res://Scripts/label_3d.gd" id="2_qfrjp"]
-[ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://Scenes/expansive_ring.tscn" id="3_k3gl0"]
+[ext_resource type="Script" uid="uid://j2t7j1fwk5t2" path="res://Scripts/siren.gd" id="1_561bb"]
+[ext_resource type="Script" uid="uid://c7atctvribcv2" path="res://Scripts/label_3d.gd" id="2_85oh0"]
+[ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://Scenes/expansive_ring.tscn" id="3_00c8b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ramef"]
 albedo_color = Color(1, 0, 0.192157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_irhnb"]
 
-[sub_resource type="Shader" id="Shader_k3gl0"]
+[sub_resource type="Shader" id="Shader_561bb"]
 resource_local_to_scene = true
 code = "//shader_type canvas_item;
 //uniform float circle_size = 0.5f;
@@ -55,7 +55,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ofvd"]
 resource_local_to_scene = true
-shader = SubResource("Shader_k3gl0")
+shader = SubResource("Shader_561bb")
 shader_parameter/ring_radius = 0.1
 shader_parameter/thickness_scalar = 0.0
 shader_parameter/oscillation_scalar = 0.025
@@ -66,9 +66,9 @@ shader_parameter/lerp_color = Color(1, 1, 1, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_7ofvd"]
 viewport_path = NodePath("Node3D/SubViewport")
 
-[node name="Siren" type="CharacterBody3D"]
-collision_layer = 3
-script = ExtResource("1_ramef")
+[node name="SlaveSiren" type="CharacterBody3D"]
+collision_layer = 17
+script = ExtResource("1_561bb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 material = SubResource("StandardMaterial3D_ramef")
@@ -76,15 +76,13 @@ material = SubResource("StandardMaterial3D_ramef")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_irhnb")
 
-[node name="StateTimer" type="Timer" parent="."]
-
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86976, 0)
 pixel_size = 0.01
 billboard = 2
 text = "IDLING"
 font_size = 60
-script = ExtResource("2_qfrjp")
+script = ExtResource("2_85oh0")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80762, 0, 0)
@@ -93,13 +91,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80762, 0, 0)
 transparent_bg = true
 size = Vector2i(400, 400)
 
-[node name="ExpansiveRing" parent="Node3D/SubViewport" instance=ExtResource("3_k3gl0")]
+[node name="ExpansiveRing" parent="Node3D/SubViewport" instance=ExtResource("3_00c8b")]
 material = SubResource("ShaderMaterial_7ofvd")
 
 [node name="Sprite3D" type="Sprite3D" parent="Node3D"]
 transform = Transform3D(-2, -2.87194e-07, -8.4483e-16, 0, -8.31391e-08, 0.128, -3.01992e-07, 1.902, 5.59506e-09, 2.84247, 1.76193, 0)
 texture = SubResource("ViewportTexture_7ofvd")
-
-[node name="SlaveSirens" type="Node3D" parent="."]
-
-[connection signal="timeout" from="StateTimer" to="." method="_on_state_change_timeout"]

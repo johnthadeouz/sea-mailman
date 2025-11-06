@@ -3,8 +3,8 @@ extends Label3D
 var state_string = {
 	0:"IDLING",
 	1:"PATROLLING",
-	2:"PREP_SWARMING",
-	3:"SWARMING",
+	2:"PREP_COMBATING",
+	3:"COMBATING",
 	4:"FLEEING",
 }
 
