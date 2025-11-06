@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfqf07pdadj2u"
+path="res://.godot/imported/DSi Shop Theme [Remix].mp3-f8691025e393dcb1e5c952e808ceb1e7.mp3str"
+
+[deps]
+
+source_file="res://Assets/DSi Shop Theme [Remix].mp3"
+dest_files=["res://.godot/imported/DSi Shop Theme [Remix].mp3-f8691025e393dcb1e5c952e808ceb1e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
