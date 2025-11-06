@@ -12,7 +12,6 @@ func take_damage(damage: int):
 		call_deferred("change_scene")
 		
 func pickup(new_parent: CharacterBody3D, attach_marker: Marker3D):
-	# 1. An den neuen Parent anheften (das Schiff)
 	reparent(new_parent)
 
 	global_position = attach_marker.global_position

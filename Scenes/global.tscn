@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbbpnrnfeb6ry"]
+[gd_scene load_steps=4 format=3 uid="uid://cbbpnrnfeb6ry"]
 
 [ext_resource type="Script" uid="uid://dqgtdwl66qo8s" path="res://Scripts/global.gd" id="1_koean"]
+[ext_resource type="AudioStream" uid="uid://dihthovx45hwe" path="res://Assets/SFX/ClickSounds/751081__smallconfusion__mechanical-plastic-click-03.wav" id="2_o8ivi"]
+[ext_resource type="AudioStream" uid="uid://csk61hrdqwbl" path="res://Assets/SFX/ClickSounds/108336__qat__click_01-fast.wav" id="3_yl8w0"]
 
 [node name="Global" type="Node3D"]
 script = ExtResource("1_koean")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_o8ivi")
+
+[node name="SlideSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yl8w0")
