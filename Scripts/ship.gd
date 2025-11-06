@@ -27,12 +27,16 @@ func append_slave_and_get_position():
 
 
 func show_honk():
-	$HonkArea3D.visible = true
-	$HonkArea3D.rotation_degrees.y = 0
+	$Areas/HonkArea3D.visible = true
+	$Areas/HonkArea3D.rotation_degrees.y = 0
 	
 func hide_honk():
-	$HonkArea3D.visible = false
-	
+	$Areas/HonkArea3D.visible = false
+
+
+func _ready() -> void:
+	$Areas/SirenArea3D.ship = self
+	$Areas/HonkArea3D.ship = self
 
 func _physics_process(delta: float) -> void:
 
@@ -57,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if can_move:#Turning Boat
 		rotate_y(turn * ROTATION_SPEED * delta)
 	else:#turning horn (combat only)
-		$HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
+		$Areas/HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
 	move_and_slide()
 
 
@@ -70,7 +74,7 @@ func _input(event: InputEvent) -> void:
 			$HonkParticle/SubViewport/ExpansiveRing.get_node("AnimationPlayer").play("expand")
 			is_honking = true
 			print("HOOOOONK!")
-			$HonkArea3D.interrupt_siren_song()
+			$Areas/HonkArea3D.interrupt_siren_song()
 			$HonkTimer.start()
 
 
