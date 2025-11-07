@@ -1,7 +1,7 @@
 extends Node3D
 class_name SirenSlots
 
-var slots = [false,false,false,false,]
+var slots:Array[bool] = [false,false,false,false,]
 
 func get_available_slot():
 	for slot_index in range(0,slots.size()):

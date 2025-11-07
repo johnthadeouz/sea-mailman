@@ -3,11 +3,11 @@ class_name Siren
 signal COMBAT_STARTED
 
 static var slave_sirens = load("res://Scenes/Characters/slavesiren.tscn")
-var original_position
-const MAX_SLAVES = 4
-const MAX_PATROLLING_DISTANCE = 10
-const MAX_CHASING_DISTANCE = 20
-var SPEED = 4.0
+var original_position:Vector3
+const MAX_SLAVES:int = 4
+const MAX_PATROLLING_DISTANCE:int = 10
+const MAX_CHASING_DISTANCE:int = 20
+var speed:float = 4.0
 enum state{
 	IDLING,
 	PATROLLING,
@@ -15,7 +15,7 @@ enum state{
 	COMBATING,
 	FLEEING,
 }
-var state_wait_time = {
+var state_wait_time:Dictionary = {
 	state.IDLING:8,
 	state.PATROLLING:4,
 	state.PREP_COMBATING:1.0,
@@ -27,14 +27,14 @@ var current_state:state = state.IDLING:
 		current_state = val
 		$Label3D.update(val)
 		
-var direction = Vector3.ZERO
-var ship_last_seen_pos = Vector3.ZERO
+var direction:Vector3 = Vector3.ZERO
+var ship_last_seen_pos:Vector3 = Vector3.ZERO
 var target_ship:Ship = null
-var is_singing = false
-var is_slave = false
+var is_singing:bool = false
+var is_slave:bool = false
 var master:Siren = null
 var slaves:Array[Siren] = []
-var is_coward = false
+var is_coward:bool = false
 
 
 func _ready() -> void:
@@ -52,11 +52,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	# Get the input direction and handle the movement/deceleration.
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
 
 
@@ -141,7 +141,7 @@ func break_song_and_die():
 func flee(dir):
 	current_state = state.FLEEING
 	direction = dir
-	SPEED = SPEED*2
+	speed = speed*2
 	if not is_slave:
 		$StateTimer.stop()
 		$StateTimer.start(state_wait_time[current_state])

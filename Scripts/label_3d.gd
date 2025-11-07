@@ -1,6 +1,6 @@
 extends Label3D
 
-var state_string = {
+var state_string: Dictionary = {
 	0:"IDLING",
 	1:"PATROLLING",
 	2:"PREP_COMBATING",

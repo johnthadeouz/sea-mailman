@@ -1,8 +1,8 @@
 extends Node3D
 class_name Package
 
-@export var health = 30
-@onready var collider = $CSGBox3D
+@export var health: int = 30
+@onready var collider:CSGBox3D = $CSGBox3D
 
 func take_damage(damage: int):
 	health -= damage
