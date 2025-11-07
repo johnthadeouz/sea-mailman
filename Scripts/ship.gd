@@ -1,14 +1,16 @@
 extends CharacterBody3D
 class_name Ship
+signal package_collected(package: Package)
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const ACCELERATION = 4
-const FRICTION = 2
-const ROTATION_SPEED = 2.0
-var can_move = true
-var is_honking = false
-var under_attack = false:
+@export var package: Package
+const SPEED:float = 5.0
+const JUMP_VELOCITY:float = 4.5
+const ACCELERATION:int = 4
+const FRICTION:int = 2
+const ROTATION_SPEED:float = 2.0
+var can_move:bool = true
+var is_honking:bool = false
+var under_attack:bool = false:
 	set(val):
 		under_attack = val
 		if val:
@@ -22,29 +24,14 @@ var under_attack = false:
 			$SirenSlots.clean_slots()
 
 
-func append_slave_and_get_position():
-	return $SirenSlots.append_slave_and_get_position()
-
-
-@export var package: Package
-
-signal package_collected(package: Package)
-
-func show_honk():
-	$Areas/HonkArea3D.visible = true
-	$Areas/HonkArea3D.rotation_degrees.y = 0
-	
-func hide_honk():
-	$Areas/HonkArea3D.visible = false
-
 func _ready() -> void:
 	if package:
 		package.position = $Marker3D.global_position
 	$Areas/SirenArea3D.ship = self
 	$Areas/HonkArea3D.ship = self
 
-func _physics_process(delta: float) -> void:
 
+func _physics_process(delta: float) -> void:
 	#gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -61,25 +48,14 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, FRICTION * delta)
 	velocity.y = vy
 
-	
 	var turn = Input.get_axis("turn-right", "turn-left")
 	if can_move:#Turning Boat
 		rotate_y(turn * ROTATION_SPEED * delta)
 	else:#turning horn (combat only)
 		$Areas/HonkArea3D.rotate_y(turn * ROTATION_SPEED * delta)
 	move_and_slide()
-	
-func deliver_package():
-	if package:
-		print("Package delivered")
-		package.queue_free()
 
 
-func _on_hitbox_body_entered(body) -> void:
-	if body.get_collision_layer_value(1) and package and !body.name == "Sea":
-		package.take_damage(10)
-	
-	
 func _input(event: InputEvent) -> void:
 	if not under_attack:
 		return
@@ -90,6 +66,30 @@ func _input(event: InputEvent) -> void:
 			print("HOOOOONK!")
 			$Areas/HonkArea3D.interrupt_siren_song()
 			$HonkTimer.start()
+
+
+func append_slave_and_get_position():
+	return $SirenSlots.append_slave_and_get_position()
+
+
+func show_honk():
+	$Areas/HonkArea3D.visible = true
+	$Areas/HonkArea3D.rotation_degrees.y = 0
+
+
+func hide_honk():
+	$Areas/HonkArea3D.visible = false
+
+
+func deliver_package():
+	if package:
+		print("Package delivered")
+		package.queue_free()
+
+
+func _on_hitbox_body_entered(body) -> void:
+	if body.get_collision_layer_value(1) and package and !body.name == "Sea":
+		package.take_damage(10)
 
 
 func _on_honk_timer_timeout() -> void:

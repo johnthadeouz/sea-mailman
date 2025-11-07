@@ -1,5 +1,5 @@
 extends Node
-const SAVE_PATH = "user://boatgamesavefile.sv"
+const SAVE_PATH: String = "user://boatgamesavefile.sv"
 
 
 func load_exists()->bool:
