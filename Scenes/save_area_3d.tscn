@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdrkt3rw5gblk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhxnq"]
+size = Vector3(4, 4, 4)
+
+[node name="SaveArea3D" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jhxnq")
+debug_color = Color(0.0133224, 0.973291, 3.85046e-07, 1)
