@@ -2,10 +2,12 @@ extends Node3D
 
 
 func _ready() -> void:
+	#$PauseMenu.UNPAUSE_TRIGGERED.connect(unpause_game)
 	connect_checkpoint_islands()
 	if SaveLoad.load_exists():
 		load_ship()
 		load_package()
+
 
 
 func connect_checkpoint_islands():
@@ -26,8 +28,9 @@ func load_package():
 	$Package.health = Global.package_health
 
 
-func _process(delta: float) -> void:
-	pass
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("escape"):
+		$PauseMenu.pause()
 
 
 func _on_ship_package_collected(collected_package: Package) -> void:
