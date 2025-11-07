@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=23 format=3 uid="uid://crjmnfjjo4j16"]
 
 [ext_resource type="Script" uid="uid://cbr05c5mc5oii" path="res://Scripts/ingame.gd" id="1_jy764"]
 [ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/Characters/ship.tscn" id="1_oybcm"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b76x3ma37j1ss" path="res://Scenes/Islands/island_5.tscn" id="6_csxpc"]
 [ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="9_35pev"]
 [ext_resource type="Script" uid="uid://bmlmon47salmd" path="res://Scripts/pause_menu.gd" id="11_csxpc"]
-[ext_resource type="PackedScene" uid="uid://djkgej4sl150b" path="res://Scenes/settings.tscn" id="12_6cchy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -80,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.235294, 0.290196, 0.607843, 0)]
+"values": [Color(0.235294, 0.290196, 0.607843, 0.537255)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -95,38 +94,10 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_7ltoa"]
-resource_name = "fadeout"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.235294, 0.290196, 0.607843, 0.537255), Color(0.235294, 0.290196, 0.607843, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Buttons:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ltoa"]
 _data = {
 &"RESET": SubResource("Animation_6cchy"),
-&"fadein": SubResource("Animation_csxpc"),
-&"fadeout": SubResource("Animation_7ltoa")
+&"fadein": SubResource("Animation_csxpc")
 }
 
 [node name="Node3D" type="Node3D"]
@@ -229,10 +200,7 @@ script = ExtResource("11_csxpc")
 z_index = -1
 offset_right = 1151.0
 offset_bottom = 649.0
-color = Color(0.235294, 0.290196, 0.607843, 0)
-
-[node name="Settings" parent="PauseMenu" instance=ExtResource("12_6cchy")]
-visible = false
+color = Color(0.235294, 0.290196, 0.607843, 0.537255)
 
 [node name="Buttons" type="VBoxContainer" parent="PauseMenu"]
 visible = false
