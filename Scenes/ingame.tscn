@@ -43,7 +43,7 @@ sky = SubResource("Sky_p0uuu")
 script = ExtResource("1_jy764")
 
 [node name="Ship" parent="." instance=ExtResource("1_oybcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -221.194, 1, 342.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.214352, 1, 151.732)
 
 [node name="Sea" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -72,6 +72,9 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 53.5118, 0.804002, 0, -72.354, 0.594626, 0, 36.7698, -49.7169)
 height = 3.37427
 
+[node name="MainIsland" parent="Env" instance=ExtResource("2_kd26p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.337, 0, 356.351)
+
 [node name="Islands" type="Node3D" parent="Env"]
 
 [node name="Island1" parent="Env/Islands" instance=ExtResource("2_lq36l")]
@@ -88,9 +91,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.395, 0, -191.751)
 
 [node name="Island5" parent="Env/Islands" instance=ExtResource("6_csxpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.834, 0, 63.0592)
-
-[node name="MainIsland" parent="Env/Islands" instance=ExtResource("2_kd26p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.337, 0, 356.351)
 
 [node name="SeaDeco" type="Node3D" parent="Env"]
 
