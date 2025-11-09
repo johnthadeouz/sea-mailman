@@ -1,0 +1,124 @@
+[gd_scene load_steps=3 format=3 uid="uid://djkgej4sl150b"]
+
+[ext_resource type="Script" uid="uid://b65b7s5f2116c" path="res://Scripts/settings.gd" id="1_4geyq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60bxw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Settings" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60bxw")
+script = ExtResource("1_4geyq")
+
+[node name="Frames" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 25
+
+[node name="MnKFrame" type="PanelContainer" parent="Frames"]
+visible = false
+custom_minimum_size = Vector2(1100, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="Frames/MnKFrame"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VideoFrame" type="PanelContainer" parent="Frames"]
+visible = false
+custom_minimum_size = Vector2(1100, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="Frames/VideoFrame"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="ResolutionButton" type="OptionButton" parent="Frames/VideoFrame/MarginContainer"]
+custom_minimum_size = Vector2(500, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+alignment = 1
+
+[node name="AudioFrame" type="PanelContainer" parent="Frames"]
+custom_minimum_size = Vector2(1100, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="Frames/AudioFrame"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Frames/AudioFrame/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Main Volume"
+horizontal_alignment = 1
+
+[node name="MainVolume" type="HSlider" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -30.0
+max_value = 0.0
+rounded = true
+
+[node name="Label2" type="Label" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -30.0
+max_value = 0.0
+rounded = true
+
+[node name="Buttons" type="HBoxContainer" parent="Frames"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="MnkSettings" type="Button" parent="Frames/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Mouse & Keyboard"
+
+[node name="VideoSettings" type="Button" parent="Frames/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Video"
+
+[node name="AudioSettings" type="Button" parent="Frames/Buttons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Audio"
+
+[connection signal="value_changed" from="Frames/AudioFrame/MarginContainer/VBoxContainer/MainVolume" to="." method="_on_main_volume_value_changed"]
+[connection signal="value_changed" from="Frames/AudioFrame/MarginContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="Frames/Buttons/MnkSettings" to="." method="_on_mnk_settings_pressed"]
+[connection signal="pressed" from="Frames/Buttons/VideoSettings" to="." method="_on_video_settings_pressed"]
+[connection signal="pressed" from="Frames/Buttons/AudioSettings" to="." method="_on_audio_settings_pressed"]

@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://c664w6exxqphv"]
+[gd_scene load_steps=3 format=3 uid="uid://c664w6exxqphv"]
+
+[ext_resource type="Script" uid="uid://kghfle4yhy7b" path="res://Scripts/island.gd" id="1_a7y58"]
+[ext_resource type="PackedScene" uid="uid://cdrkt3rw5gblk" path="res://Scenes/save_area_3d.tscn" id="1_v8kdb"]
 
 [node name="Island3" type="Node3D"]
+script = ExtResource("1_a7y58")
+checkpoint_id = 3
 
 [node name="Terrain" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.230777, 0)
@@ -8,3 +13,12 @@ use_collision = true
 collision_mask = 4
 radius = 5.0
 height = 0.719299
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0198063, -0.15, 5.5)
+size = Vector3(1.38293, 0.415, 2)
+
+[node name="SaveArea3D" parent="." instance=ExtResource("1_v8kdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.69945)
+
+[connection signal="body_entered" from="SaveArea3D" to="." method="_on_ship_entered"]
