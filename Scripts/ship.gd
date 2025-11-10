@@ -87,6 +87,12 @@ func deliver_package():
 		package.queue_free()
 
 
+func face_compass_to_next_island(next_island_pos:Vector3):
+	var next_island_dir = global_position.direction_to(next_island_pos).normalized()
+	#$Compass.rotate_y(next_island_dir)
+	$Compass.look_at(next_island_pos, Vector3.UP)
+
+
 func _on_hitbox_body_entered(body) -> void:
 	if body.get_collision_layer_value(1) and package and !body.name == "Sea":
 		package.take_damage(10)

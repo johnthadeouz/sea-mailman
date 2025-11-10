@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyjawbxftc6wx"]
+[gd_scene load_steps=21 format=3 uid="uid://dyjawbxftc6wx"]
 
 [ext_resource type="Script" uid="uid://bn0dh3es2srdu" path="res://Scripts/ship.gd" id="1_l3rv8"]
 [ext_resource type="Script" uid="uid://e3cp45lg3p4i" path="res://Scripts/combat_area_3d.gd" id="2_aytw0"]
 [ext_resource type="Script" uid="uid://btpwh64va4si" path="res://Scripts/honk_area_3d.gd" id="2_vxtu7"]
 [ext_resource type="PackedScene" uid="uid://c5rnngoxn83jb" path="res://Scenes/expansive_ring.tscn" id="3_xbtsy"]
 [ext_resource type="Script" uid="uid://ceqnham0tb8lf" path="res://Scripts/siren_slots.gd" id="5_m85f0"]
+[ext_resource type="Texture2D" uid="uid://cdwd2q6ahqs1g" path="res://Assets/PNG/OPflag.jpg" id="6_wthq7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1gpl"]
 size = Vector3(2, 2, 3)
 
-[sub_resource type="Shader" id="Shader_m85f0"]
+[sub_resource type="Shader" id="Shader_wthq7"]
 resource_local_to_scene = true
 code = "//shader_type canvas_item;
 //uniform float circle_size = 0.5f;
@@ -55,7 +56,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ruy1k"]
 resource_local_to_scene = true
-shader = SubResource("Shader_m85f0")
+shader = SubResource("Shader_wthq7")
 shader_parameter/ring_radius = 0.1
 shader_parameter/thickness_scalar = 0.0
 shader_parameter/oscillation_scalar = 0.05
@@ -316,6 +317,14 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/CollectArea"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("BoxShape3D_wthq7")
+
+[node name="Compass" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891161, 1.55071, -1.41356)
+radius = 0.05
+
+[node name="Sprite3D" type="Sprite3D" parent="Compass"]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.74, 0.54)
+texture = ExtResource("6_wthq7")
 
 [connection signal="timeout" from="HonkTimer" to="." method="_on_honk_timer_timeout"]
 [connection signal="body_entered" from="Areas/HonkArea3D" to="Areas/HonkArea3D" method="_on_siren_entered"]
