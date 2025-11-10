@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not next_island == null:
-		print(next_island)
 		$Ship.face_compass_to_next_island(next_island.global_position)
 
 

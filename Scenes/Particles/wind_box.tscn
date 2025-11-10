@@ -1,0 +1,355 @@
+[gd_scene load_steps=20 format=3 uid="uid://mu8552xc4bpr"]
+
+[ext_resource type="PackedScene" uid="uid://cbyiuytytsxnf" path="res://wind_line.tscn" id="1_26xbg"]
+
+[sub_resource type="Shader" id="Shader_r8v7m"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ikk0b"]
+render_priority = 0
+shader = SubResource("Shader_r8v7m")
+shader_parameter/speed_wave = 1.7
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_xrpxl"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ke6py"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_xrpxl")
+shader_parameter/speed_wave = 1.0
+shader_parameter/speed_flicker = 3.0
+
+[sub_resource type="Shader" id="Shader_rsdv5"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awb60"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_rsdv5")
+shader_parameter/speed_wave = 1.1
+shader_parameter/speed_flicker = 2.0
+
+[sub_resource type="Shader" id="Shader_cy62p"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da58m"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_cy62p")
+shader_parameter/speed_wave = 0.8
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_lxyx1"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pijtn"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_lxyx1")
+shader_parameter/speed_wave = 0.7
+shader_parameter/speed_flicker = 3.0
+
+[sub_resource type="Shader" id="Shader_iibis"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spvx0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_iibis")
+shader_parameter/speed_wave = 0.8
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_ckr2t"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbnig"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_ckr2t")
+shader_parameter/speed_wave = 0.8
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_23uwq"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5uago"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_23uwq")
+shader_parameter/speed_wave = 1.4
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_ur0dt"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lfasi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_ur0dt")
+shader_parameter/speed_wave = 1.6
+shader_parameter/speed_flicker = 1.0
+
+[node name="WindBox" type="Node3D"]
+
+[node name="Wind" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -3.68673, 1.55071, -1.41356)
+material_override = SubResource("ShaderMaterial_ikk0b")
+
+[node name="Wind5" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -1.35992, 5.23023, -4.50939)
+material_override = SubResource("ShaderMaterial_ke6py")
+
+[node name="Wind6" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 1.10716, 5.23023, -7.48251)
+material_override = SubResource("ShaderMaterial_awb60")
+
+[node name="Wind10" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -24.8677, 5.23023, -7.48251)
+material_override = SubResource("ShaderMaterial_awb60")
+
+[node name="Wind11" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 25.0702, 5.23023, -4.21981)
+material_override = SubResource("ShaderMaterial_awb60")
+
+[node name="Wind3" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -6.10236, 1.55071, 4.18865)
+material_override = SubResource("ShaderMaterial_da58m")
+
+[node name="Wind18" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -19.8074, 1.55071, 22.3277)
+material_override = SubResource("ShaderMaterial_da58m")
+
+[node name="Wind15" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 19.3007, 1.55071, -21.3026)
+material_override = SubResource("ShaderMaterial_da58m")
+
+[node name="Wind12" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 24.606, 1.55071, 4.18865)
+material_override = SubResource("ShaderMaterial_da58m")
+
+[node name="Wind7" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -6.10236, 1.55071, -8.90973)
+material_override = SubResource("ShaderMaterial_pijtn")
+
+[node name="Wind16" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 12.6413, 1.55071, 19.105)
+material_override = SubResource("ShaderMaterial_pijtn")
+
+[node name="Wind17" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -13.6603, 1.55071, -23.9248)
+material_override = SubResource("ShaderMaterial_pijtn")
+
+[node name="Wind13" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -29.882, 1.55071, 10.2701)
+material_override = SubResource("ShaderMaterial_pijtn")
+
+[node name="Wind14" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 30.2657, 1.55071, 26.2753)
+material_override = SubResource("ShaderMaterial_pijtn")
+
+[node name="Wind9" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, -9.59709, 1.55071, -1.03492)
+material_override = SubResource("ShaderMaterial_spvx0")
+
+[node name="Wind8" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 6.06557, 1.55071, -8.90973)
+material_override = SubResource("ShaderMaterial_mbnig")
+
+[node name="Wind4" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 4.76799, 1.55071, 4.18865)
+material_override = SubResource("ShaderMaterial_5uago")
+
+[node name="Wind2" parent="." instance=ExtResource("1_26xbg")]
+transform = Transform3D(-2.97446e-07, 0, -1, 0, 0.277509, 0, 6.80477, 0, -4.37114e-08, 3.04621, 1.55071, -1.41356)
+material_override = SubResource("ShaderMaterial_lfasi")

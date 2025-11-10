@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyiuytytsxnf"]
+
+[ext_resource type="Material" uid="uid://c1x07f5mippgx" path="res://wind_line.tres" id="1_jwapg"]
+[ext_resource type="Texture2D" uid="uid://ck38ld26j34g7" path="res://icon.svg" id="2_mqof7"]
+
+[node name="Sprite3D" type="Sprite3D"]
+transform = Transform3D(6.80477, 0, 0, 0, 0.277509, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("1_jwapg")
+texture = ExtResource("2_mqof7")
