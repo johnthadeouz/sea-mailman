@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnaqlnxng2l0p"]
+
+[ext_resource type="Material" uid="uid://c1x07f5mippgx" path="res://wind_line.tres" id="1_k3ccp"]
+[ext_resource type="Script" uid="uid://bdecoc7ntsqrl" path="res://test_wind_particle.gd" id="1_pgtg2"]
+
+[node name="CSGSphere3D" type="CSGSphere3D"]
+transform = Transform3D(10.0642, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+material = ExtResource("1_k3ccp")
+script = ExtResource("1_pgtg2")

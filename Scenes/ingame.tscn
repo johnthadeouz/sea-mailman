@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=27 format=3 uid="uid://crjmnfjjo4j16"]
 
 [ext_resource type="Script" uid="uid://cbr05c5mc5oii" path="res://Scripts/ingame.gd" id="1_jy764"]
 [ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/Characters/ship.tscn" id="1_oybcm"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="9_35pev"]
 [ext_resource type="Script" uid="uid://bmlmon47salmd" path="res://Scripts/pause_menu.gd" id="11_csxpc"]
 [ext_resource type="PackedScene" uid="uid://djkgej4sl150b" path="res://Scenes/settings.tscn" id="12_6cchy"]
+[ext_resource type="Script" uid="uid://b5snvmlvtx31p" path="res://Scripts/wind_boxes.gd" id="13_5mqjs"]
+[ext_resource type="PackedScene" uid="uid://mu8552xc4bpr" path="res://Scenes/Particles/wind_box.tscn" id="14_5mqjs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
 albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
@@ -133,7 +135,10 @@ _data = {
 script = ExtResource("1_jy764")
 
 [node name="Ship" parent="." instance=ExtResource("1_oybcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 1, 341.476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 0.999998, 341.476)
+
+[node name="WindMarker" type="Marker3D" parent="Ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="Sea" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -209,6 +214,9 @@ outer_radius = 4.0
 [node name="Siren4" parent="Sirens" instance=ExtResource("2_vmfbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.033, 0, 317.248)
 
+[node name="Siren5" parent="Sirens" instance=ExtResource("2_vmfbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.244, 0, -64.1422)
+
 [node name="Siren1" parent="Sirens" instance=ExtResource("2_vmfbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.975, 0, 256.058)
 
@@ -272,6 +280,27 @@ text = "Back to Main Menu
 libraries = {
 &"": SubResource("AnimationLibrary_7ltoa")
 }
+
+[node name="WindBoxes" type="Node3D" parent="."]
+script = ExtResource("13_5mqjs")
+
+[node name="WindBox" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.6429, 0, 21.6561)
+
+[node name="WindBox2" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5377, 0, 21.6561)
+
+[node name="WindBox3" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5377, 0, -48.8442)
+
+[node name="WindBox4" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.5911, 0, -48.8442)
+
+[node name="WindBox5" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.741, 0, -44.2652)
+
+[node name="WindBox6" parent="WindBoxes" instance=ExtResource("14_5mqjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.741, 0, 23.6494)
 
 [connection signal="package_collected" from="Ship" to="." method="_on_ship_package_collected"]
 [connection signal="pressed" from="PauseMenu/Buttons/Resume" to="PauseMenu" method="_on_resume_pressed"]

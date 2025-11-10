@@ -91,6 +91,7 @@ func face_compass_to_next_island(next_island_pos:Vector3):
 	var next_island_dir = global_position.direction_to(next_island_pos).normalized()
 	#$Compass.rotate_y(next_island_dir)
 	$Compass.look_at(next_island_pos, Vector3.UP)
+	#$WindBox.look_at(next_island_pos, Vector3.UP)
 
 
 func _on_hitbox_body_entered(body) -> void:
