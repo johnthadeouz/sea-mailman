@@ -125,7 +125,7 @@ shader = SubResource("Shader_qr1o3")
 shader_parameter/speed_wave = 1.1
 shader_parameter/speed_flicker = 2.0
 
-[sub_resource type="Shader" id="Shader_x7qbl"]
+[sub_resource type="Shader" id="Shader_jrg0v"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -152,9 +152,71 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swurc"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_x7qbl")
+shader = SubResource("Shader_jrg0v")
 shader_parameter/speed_wave = 1.1
 shader_parameter/speed_flicker = 2.0
+
+[sub_resource type="Shader" id="Shader_x7qbl"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da58m"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_x7qbl")
+shader_parameter/speed_wave = 0.8
+shader_parameter/speed_flicker = 1.0
+
+[sub_resource type="Shader" id="Shader_swurc"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
+uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
+
+void fragment() {
+    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
+    
+    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
+    
+    float alpha = edge_fade * wave;
+    alpha = smoothstep(0.0, 0.8, alpha);
+    
+    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
+    
+    ALPHA = alpha * flicker * 0.7;
+    
+    vec3 base_color = COLOR.rgb;
+    EMISSION = base_color * (wave * 0.5 + 0.5);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_soyr1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_swurc")
+shader_parameter/speed_wave = 0.8
+shader_parameter/speed_flicker = 1.0
 
 [sub_resource type="Shader" id="Shader_fwfih"]
 resource_local_to_scene = true
@@ -180,7 +242,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_da58m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7urdo"]
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_fwfih")
@@ -211,76 +273,14 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_soyr1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pkc5"]
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_i3ue4")
 shader_parameter/speed_wave = 0.8
 shader_parameter/speed_flicker = 1.0
 
-[sub_resource type="Shader" id="Shader_dfivg"]
-resource_local_to_scene = true
-code = "shader_type spatial;
-render_mode blend_mix, cull_disabled, unshaded;
-uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
-uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
-
-void fragment() {
-    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
-    
-    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
-    
-    float alpha = edge_fade * wave;
-    alpha = smoothstep(0.0, 0.8, alpha);
-    
-    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
-    
-    ALPHA = alpha * flicker * 0.7;
-    
-    vec3 base_color = COLOR.rgb;
-    EMISSION = base_color * (wave * 0.5 + 0.5);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7urdo"]
-resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_dfivg")
-shader_parameter/speed_wave = 0.8
-shader_parameter/speed_flicker = 1.0
-
-[sub_resource type="Shader" id="Shader_xwli6"]
-resource_local_to_scene = true
-code = "shader_type spatial;
-render_mode blend_mix, cull_disabled, unshaded;
-uniform float speed_wave : hint_range(0.0, 50.0, 0.1) = 1.0;
-uniform float speed_flicker : hint_range(0.0, 50.0, 0.1) = 1.0;
-
-void fragment() {
-    float edge_fade = 1.0 - length(UV * 2.0 - 1.0);
-    
-    float wave = sin((TIME * speed_wave) * 2.0 + UV.x * 3.0) * 0.5 + 0.5;
-    
-    float alpha = edge_fade * wave;
-    alpha = smoothstep(0.0, 0.8, alpha);
-    
-    float flicker = sin((TIME * speed_flicker) * 5.0 + UV.y * 10.0) * 0.1 + 0.9;
-    
-    ALPHA = alpha * flicker * 0.7;
-    
-    vec3 base_color = COLOR.rgb;
-    EMISSION = base_color * (wave * 0.5 + 0.5);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pkc5"]
-resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_xwli6")
-shader_parameter/speed_wave = 0.8
-shader_parameter/speed_flicker = 1.0
-
-[sub_resource type="Shader" id="Shader_x463s"]
+[sub_resource type="Shader" id="Shader_soyr1"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -307,11 +307,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pijtn"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_x463s")
+shader = SubResource("Shader_soyr1")
 shader_parameter/speed_wave = 0.7
 shader_parameter/speed_flicker = 3.0
 
-[sub_resource type="Shader" id="Shader_08up8"]
+[sub_resource type="Shader" id="Shader_dfivg"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -338,11 +338,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_454ej"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_08up8")
+shader = SubResource("Shader_dfivg")
 shader_parameter/speed_wave = 0.7
 shader_parameter/speed_flicker = 3.0
 
-[sub_resource type="Shader" id="Shader_bok1o"]
+[sub_resource type="Shader" id="Shader_7urdo"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -369,11 +369,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mu2jc"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_bok1o")
+shader = SubResource("Shader_7urdo")
 shader_parameter/speed_wave = 0.7
 shader_parameter/speed_flicker = 3.0
 
-[sub_resource type="Shader" id="Shader_mw6br"]
+[sub_resource type="Shader" id="Shader_xwli6"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -400,11 +400,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hyjrh"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_mw6br")
+shader = SubResource("Shader_xwli6")
 shader_parameter/speed_wave = 0.7
 shader_parameter/speed_flicker = 3.0
 
-[sub_resource type="Shader" id="Shader_eqsfv"]
+[sub_resource type="Shader" id="Shader_2pkc5"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -431,11 +431,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klrcy"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_eqsfv")
+shader = SubResource("Shader_2pkc5")
 shader_parameter/speed_wave = 0.7
 shader_parameter/speed_flicker = 3.0
 
-[sub_resource type="Shader" id="Shader_r7cht"]
+[sub_resource type="Shader" id="Shader_x463s"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -462,11 +462,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spvx0"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_r7cht")
+shader = SubResource("Shader_x463s")
 shader_parameter/speed_wave = 0.8
 shader_parameter/speed_flicker = 1.0
 
-[sub_resource type="Shader" id="Shader_x2ou1"]
+[sub_resource type="Shader" id="Shader_08up8"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -493,11 +493,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbnig"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_x2ou1")
+shader = SubResource("Shader_08up8")
 shader_parameter/speed_wave = 0.8
 shader_parameter/speed_flicker = 1.0
 
-[sub_resource type="Shader" id="Shader_urxt7"]
+[sub_resource type="Shader" id="Shader_454ej"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -524,11 +524,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5uago"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_urxt7")
+shader = SubResource("Shader_454ej")
 shader_parameter/speed_wave = 1.4
 shader_parameter/speed_flicker = 1.0
 
-[sub_resource type="Shader" id="Shader_a3uhu"]
+[sub_resource type="Shader" id="Shader_bok1o"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, cull_disabled, unshaded;
@@ -555,7 +555,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfasi"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_a3uhu")
+shader = SubResource("Shader_bok1o")
 shader_parameter/speed_wave = 1.6
 shader_parameter/speed_flicker = 1.0
 

@@ -1,5 +1,6 @@
 extends Node3D
 
+const OOW_BOUNDARY = 500
 var ship_position: Vector3 = Vector3(0,0,0)
 var package_health: int = 100
 var current_checkpoint: int = 0

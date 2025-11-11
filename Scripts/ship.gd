@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	out_of_bounds_checker()
 	#Moving boat
 	var vy = velocity.y
 	velocity.y = 0
@@ -68,6 +69,24 @@ func _input(event: InputEvent) -> void:
 			$HonkTimer.start()
 
 
+func out_of_bounds_checker():
+	if position.x > Global.OOW_BOUNDARY:
+		position.x -= 50
+		print("> OOW_BOUNDARY")
+		return
+	elif  position.x < -Global.OOW_BOUNDARY:
+		position.x += 50
+		print("< -OOW_BOUNDARY")
+		return
+	if  position.z > Global.OOW_BOUNDARY:
+		position.z -= 50
+		print("> OOW_BOUNDARY")
+		return
+	elif  position.z < -Global.OOW_BOUNDARY:
+		position.z += 50
+		print("< -OOW_BOUNDARY")
+
+
 func append_slave_and_get_position():
 	return $SirenSlots.append_slave_and_get_position()
 
@@ -89,9 +108,7 @@ func deliver_package():
 
 func face_compass_to_next_island(next_island_pos:Vector3):
 	var next_island_dir = global_position.direction_to(next_island_pos).normalized()
-	#$Compass.rotate_y(next_island_dir)
 	$Compass.look_at(next_island_pos, Vector3.UP)
-	#$WindBox.look_at(next_island_pos, Vector3.UP)
 
 
 func _on_hitbox_body_entered(body) -> void:

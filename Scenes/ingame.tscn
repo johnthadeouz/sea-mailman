@@ -40,10 +40,10 @@ sky = SubResource("Sky_p0uuu")
 script = ExtResource("1_jy764")
 
 [node name="Ship" parent="." instance=ExtResource("1_oybcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 0.999998, 341.476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 0.999998, 558.889)
 
 [node name="WindMarker" type="Marker3D" parent="Ship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -70)
 
 [node name="Sea" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -220,6 +220,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 320)
 [node name="SeaShader58" parent="Sea" instance=ExtResource("3_3jpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 450)
 
+[node name="SeaShader65" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 577.333)
+
+[node name="SeaShader66" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 577.333)
+
+[node name="SeaShader67" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 577.333)
+
+[node name="SeaShader68" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, 577.333)
+
+[node name="SeaShader69" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, 577.333)
+
+[node name="SeaShader70" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, 577.333)
+
+[node name="SeaShader71" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, 577.333)
+
+[node name="SeaShader72" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 577.333)
+
 [node name="SeaShader59" parent="Sea" instance=ExtResource("3_3jpny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 190)
 
@@ -242,7 +266,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460.104, 0, -456.969)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.2138, 0, -456.969)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sea"]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+transform = Transform3D(600, 0, 0, 0, 600, 0, 0, 0, 600, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_0bpjf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
