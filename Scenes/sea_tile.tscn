@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6livylrpb36i"]
+
+[ext_resource type="Material" uid="uid://degixfko5vwnu" path="res://sea_shader_material.tres" id="1_fgewa"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0bpjf"]
+resource_local_to_scene = true
+material = ExtResource("1_fgewa")
+size = Vector2(130, 130)
+subdivide_width = 200
+subdivide_depth = 200
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3jpny"]
+material = ExtResource("1_fgewa")
+size = Vector2(130, 130)
+subdivide_width = 25
+subdivide_depth = 25
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ikk0b"]
+material = ExtResource("1_fgewa")
+size = Vector2(130, 130)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fgewa"]
+material = ExtResource("1_fgewa")
+size = Vector2(130, 130)
+
+[node name="SeaShader" type="Node3D"]
+
+[node name="High" type="MeshInstance3D" parent="."]
+visibility_range_end = 50.0
+mesh = SubResource("PlaneMesh_0bpjf")
+skeleton = NodePath("../../..")
+
+[node name="Mid" type="MeshInstance3D" parent="."]
+visibility_range_begin = 50.0
+visibility_range_end = 100.0
+mesh = SubResource("PlaneMesh_3jpny")
+
+[node name="Low" type="MeshInstance3D" parent="."]
+visibility_range_begin = 100.0
+visibility_range_end = 400.0
+mesh = SubResource("PlaneMesh_ikk0b")
+
+[node name="UltraLow" type="MeshInstance3D" parent="."]
+visibility_range_begin = 400.0
+visibility_range_end = 1000.0
+mesh = SubResource("PlaneMesh_fgewa")

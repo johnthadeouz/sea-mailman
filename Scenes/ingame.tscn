@@ -1,135 +1,40 @@
-[gd_scene load_steps=27 format=3 uid="uid://crjmnfjjo4j16"]
+[gd_scene load_steps=21 format=3 uid="uid://crjmnfjjo4j16"]
 
 [ext_resource type="Script" uid="uid://cbr05c5mc5oii" path="res://Scripts/ingame.gd" id="1_jy764"]
 [ext_resource type="PackedScene" uid="uid://dyjawbxftc6wx" path="res://Scenes/Characters/ship.tscn" id="1_oybcm"]
 [ext_resource type="PackedScene" uid="uid://wa1gqtcg7gdu" path="res://Scenes/Islands/main_island.tscn" id="2_kd26p"]
 [ext_resource type="PackedScene" uid="uid://ccgre0covjepg" path="res://Scenes/Islands/island_1.tscn" id="2_lq36l"]
 [ext_resource type="PackedScene" uid="uid://ckko2inq8bbdl" path="res://Scenes/Characters/siren.tscn" id="2_vmfbn"]
+[ext_resource type="PackedScene" uid="uid://b6livylrpb36i" path="res://Scenes/sea_tile.tscn" id="3_3jpny"]
 [ext_resource type="PackedScene" uid="uid://b0csw8ic48fvd" path="res://Scenes/Islands/island_2.tscn" id="3_mpua3"]
 [ext_resource type="PackedScene" uid="uid://c664w6exxqphv" path="res://Scenes/Islands/island_3.tscn" id="4_35pev"]
 [ext_resource type="PackedScene" uid="uid://cpwh40qfl0wi0" path="res://Scenes/Islands/island_4.tscn" id="5_jy764"]
 [ext_resource type="PackedScene" uid="uid://b76x3ma37j1ss" path="res://Scenes/Islands/island_5.tscn" id="6_csxpc"]
 [ext_resource type="PackedScene" uid="uid://cig7bgd3jxxrn" path="res://Scenes/package.tscn" id="9_35pev"]
-[ext_resource type="Script" uid="uid://bmlmon47salmd" path="res://Scripts/pause_menu.gd" id="11_csxpc"]
-[ext_resource type="PackedScene" uid="uid://djkgej4sl150b" path="res://Scenes/settings.tscn" id="12_6cchy"]
+[ext_resource type="PackedScene" uid="uid://pe0bwxtrwf63" path="res://Scenes/Screens/PauseMenu.tscn" id="12_5mqjs"]
 [ext_resource type="Script" uid="uid://b5snvmlvtx31p" path="res://Scripts/wind_boxes.gd" id="13_5mqjs"]
 [ext_resource type="PackedScene" uid="uid://mu8552xc4bpr" path="res://Scenes/Particles/wind_box.tscn" id="14_5mqjs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bpjf"]
-albedo_color = Color(0.568166, 0.972479, 0.99803, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0bpjf"]
-material = SubResource("StandardMaterial3D_0bpjf")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0bpjf"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
-[sub_resource type="Gradient" id="Gradient_u1gpl"]
-colors = PackedColorArray(1, 0.645806, 0.615196, 1, 0.957458, 0.930351, 0.894251, 1)
+[sub_resource type="Gradient" id="Gradient_3jpny"]
+colors = PackedColorArray(0.499229, 0.422029, 0.710942, 1, 0.541968, 0.888939, 0.858956, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_62bee"]
-gradient = SubResource("Gradient_u1gpl")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ikk0b"]
+gradient = SubResource("Gradient_3jpny")
 fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0.395604)
+fill_to = Vector2(0, 0.483696)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_62bee"]
-panorama = SubResource("GradientTexture2D_62bee")
+panorama = SubResource("GradientTexture2D_ikk0b")
 
 [sub_resource type="Sky" id="Sky_p0uuu"]
 sky_material = SubResource("PanoramaSkyMaterial_62bee")
 
 [sub_resource type="Environment" id="Environment_wnhdf"]
 background_mode = 2
-background_energy_multiplier = 0.5
 sky = SubResource("Sky_p0uuu")
-
-[sub_resource type="Animation" id="Animation_6cchy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.235294, 0.290196, 0.607843, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Buttons:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_csxpc"]
-resource_name = "fadein"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.235294, 0.290196, 0.607843, 0), Color(0.235294, 0.290196, 0.607843, 0.537255)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Buttons:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_7ltoa"]
-resource_name = "fadeout"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.235294, 0.290196, 0.607843, 0.537255), Color(0.235294, 0.290196, 0.607843, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Buttons:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ltoa"]
-_data = {
-&"RESET": SubResource("Animation_6cchy"),
-&"fadein": SubResource("Animation_csxpc"),
-&"fadeout": SubResource("Animation_7ltoa")
-}
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_jy764")
@@ -144,10 +49,197 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 metadata/_edit_lock_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Sea"]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
-mesh = SubResource("PlaneMesh_0bpjf")
-skeleton = NodePath("../..")
+[node name="SeaShader" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 320)
+
+[node name="SeaShader2" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 320)
+
+[node name="SeaShader3" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 320)
+
+[node name="SeaShader7" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 450)
+
+[node name="SeaShader8" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 450)
+
+[node name="SeaShader9" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 450)
+
+[node name="SeaShader4" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 190)
+
+[node name="SeaShader5" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 190)
+
+[node name="SeaShader6" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 190)
+
+[node name="SeaShader10" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, 320)
+
+[node name="SeaShader11" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, 320)
+
+[node name="SeaShader12" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, 320)
+
+[node name="SeaShader13" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, 450)
+
+[node name="SeaShader14" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, 450)
+
+[node name="SeaShader15" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, 450)
+
+[node name="SeaShader16" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, 190)
+
+[node name="SeaShader17" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, 190)
+
+[node name="SeaShader18" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, 190)
+
+[node name="SeaShader19" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, -69.4794)
+
+[node name="SeaShader20" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, -69.4794)
+
+[node name="SeaShader21" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -69.4794)
+
+[node name="SeaShader22" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 60.5206)
+
+[node name="SeaShader23" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 60.5206)
+
+[node name="SeaShader24" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 60.5206)
+
+[node name="SeaShader25" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, -199.479)
+
+[node name="SeaShader26" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, -199.479)
+
+[node name="SeaShader27" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -199.479)
+
+[node name="SeaShader28" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, -69.4794)
+
+[node name="SeaShader29" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, -69.4794)
+
+[node name="SeaShader30" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, -69.4794)
+
+[node name="SeaShader31" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, 60.5206)
+
+[node name="SeaShader32" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, 60.5206)
+
+[node name="SeaShader33" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, 60.5206)
+
+[node name="SeaShader34" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, -199.479)
+
+[node name="SeaShader35" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, -199.479)
+
+[node name="SeaShader36" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, -199.479)
+
+[node name="SeaShader37" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, -327.212)
+
+[node name="SeaShader38" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, -327.212)
+
+[node name="SeaShader39" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, -327.212)
+
+[node name="SeaShader40" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.013, 0, -456.969)
+
+[node name="SeaShader41" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0127, 0, -456.969)
+
+[node name="SeaShader42" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330.013, 0, -456.969)
+
+[node name="SeaShader43" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.214, 0, -327.212)
+
+[node name="SeaShader44" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -319.214, 0, -327.212)
+
+[node name="SeaShader45" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.2138, 0, -327.212)
+
+[node name="SeaShader46" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.214, 0, -456.969)
+
+[node name="SeaShader47" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -319.214, 0, -456.969)
+
+[node name="SeaShader49" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, 320)
+
+[node name="SeaShader50" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, 450)
+
+[node name="SeaShader51" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, 190)
+
+[node name="SeaShader52" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, -69.4794)
+
+[node name="SeaShader53" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, 60.5206)
+
+[node name="SeaShader54" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.616, 0, -199.479)
+
+[node name="SeaShader55" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -443.83, 0, -327.212)
+
+[node name="SeaShader56" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -443.83, 0, -456.969)
+
+[node name="SeaShader57" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 320)
+
+[node name="SeaShader58" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 450)
+
+[node name="SeaShader59" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 190)
+
+[node name="SeaShader60" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, -69.4794)
+
+[node name="SeaShader61" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, 60.5206)
+
+[node name="SeaShader62" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 459.318, 0, -199.479)
+
+[node name="SeaShader63" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460.104, 0, -327.212)
+
+[node name="SeaShader64" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460.104, 0, -456.969)
+
+[node name="SeaShader48" parent="Sea" instance=ExtResource("3_3jpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.2138, 0, -456.969)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sea"]
 transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
@@ -229,57 +321,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4918, 0, 319.807)
 [node name="Package" parent="." instance=ExtResource("9_35pev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -226.851, -0.199326, 332.444)
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
-process_mode = 2
-script = ExtResource("11_csxpc")
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
-z_index = -1
-offset_right = 1151.0
-offset_bottom = 649.0
-color = Color(0.235294, 0.290196, 0.607843, 0)
-
-[node name="Settings" parent="PauseMenu" instance=ExtResource("12_6cchy")]
-visible = false
-
-[node name="Buttons" type="VBoxContainer" parent="PauseMenu"]
-visible = false
-anchors_preset = -1
-anchor_top = 0.591
-anchor_right = 0.364
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_right = 35.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.998897, 0.99035)
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Resume" type="Button" parent="PauseMenu/Buttons"]
-custom_minimum_size = Vector2(100, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Resume"
-
-[node name="Settings" type="Button" parent="PauseMenu/Buttons"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Settings
-"
-
-[node name="MainMenu" type="Button" parent="PauseMenu/Buttons"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Back to Main Menu
-"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu"]
-libraries = {
-&"": SubResource("AnimationLibrary_7ltoa")
-}
+[node name="PauseMenu" parent="." instance=ExtResource("12_5mqjs")]
 
 [node name="WindBoxes" type="Node3D" parent="."]
 script = ExtResource("13_5mqjs")
@@ -303,6 +345,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.741, 0, -44.2652)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.741, 0, 23.6494)
 
 [connection signal="package_collected" from="Ship" to="." method="_on_ship_package_collected"]
-[connection signal="pressed" from="PauseMenu/Buttons/Resume" to="PauseMenu" method="_on_resume_pressed"]
-[connection signal="pressed" from="PauseMenu/Buttons/Settings" to="PauseMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="PauseMenu/Buttons/MainMenu" to="PauseMenu" method="_on_back_to_main_menu_pressed"]
