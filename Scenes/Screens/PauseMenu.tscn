@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://pe0bwxtrwf63"]
+
+[ext_resource type="Script" uid="uid://bmlmon47salmd" path="res://Scripts/pause_menu.gd" id="1_bb78q"]
+[ext_resource type="PackedScene" uid="uid://djkgej4sl150b" path="res://Scenes/settings.tscn" id="2_lhvca"]
+
+[sub_resource type="Animation" id="Animation_6cchy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.235294, 0.290196, 0.607843, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_csxpc"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.235294, 0.290196, 0.607843, 0), Color(0.235294, 0.290196, 0.607843, 0.537255)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7ltoa"]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.235294, 0.290196, 0.607843, 0.537255), Color(0.235294, 0.290196, 0.607843, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ltoa"]
+_data = {
+&"RESET": SubResource("Animation_6cchy"),
+&"fadein": SubResource("Animation_csxpc"),
+&"fadeout": SubResource("Animation_7ltoa")
+}
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_bb78q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 1151.0
+offset_bottom = 649.0
+color = Color(0.235294, 0.290196, 0.607843, 0)
+
+[node name="Settings" parent="." instance=ExtResource("2_lhvca")]
+visible = false
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_top = 0.591
+anchor_right = 0.364
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.998897, 0.99035)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Settings
+"
+
+[node name="MainMenu" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back to Main Menu
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7ltoa")
+}
+
+[connection signal="pressed" from="Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/MainMenu" to="." method="_on_back_to_main_menu_pressed"]
