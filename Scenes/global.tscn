@@ -9,6 +9,8 @@ script = ExtResource("1_koean")
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_o8ivi")
+bus = &"SFX"
 
 [node name="SlideSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yl8w0")
+bus = &"SFX"

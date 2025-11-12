@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://djkgej4sl150b"]
+[gd_scene load_steps=4 format=3 uid="uid://djkgej4sl150b"]
 
 [ext_resource type="Script" uid="uid://b65b7s5f2116c" path="res://Scripts/settings.gd" id="1_4geyq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60bxw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_4geyq"]
 
 [node name="Settings" type="PanelContainer"]
 anchors_preset = 15
@@ -96,6 +98,33 @@ min_value = -30.0
 max_value = 0.0
 rounded = true
 
+[node name="Label3" type="Label" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SfxVolume" type="HSlider" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -30.0
+max_value = 0.0
+rounded = true
+
+[node name="MicrophoneButton" type="OptionButton" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+alignment = 1
+
+[node name="TestMicButton" type="Button" parent="Frames/AudioFrame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HOLD TO RECORD"
+
 [node name="Buttons" type="HBoxContainer" parent="Frames"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -117,8 +146,26 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Audio"
 
+[node name="SaveSettingsButton" type="Button" parent="Frames/Buttons"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="MicRecorder" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_4geyq")
+autoplay = true
+bus = &"Record"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
 [connection signal="value_changed" from="Frames/AudioFrame/MarginContainer/VBoxContainer/MainVolume" to="." method="_on_main_volume_value_changed"]
 [connection signal="value_changed" from="Frames/AudioFrame/MarginContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="Frames/AudioFrame/MarginContainer/VBoxContainer/SfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="item_selected" from="Frames/AudioFrame/MarginContainer/VBoxContainer/MicrophoneButton" to="." method="_on_microphone_button_item_selected"]
+[connection signal="button_down" from="Frames/AudioFrame/MarginContainer/VBoxContainer/TestMicButton" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Frames/AudioFrame/MarginContainer/VBoxContainer/TestMicButton" to="." method="_on_test_mic_button_button_up"]
 [connection signal="pressed" from="Frames/Buttons/MnkSettings" to="." method="_on_mnk_settings_pressed"]
 [connection signal="pressed" from="Frames/Buttons/VideoSettings" to="." method="_on_video_settings_pressed"]
 [connection signal="pressed" from="Frames/Buttons/AudioSettings" to="." method="_on_audio_settings_pressed"]
+[connection signal="pressed" from="Frames/Buttons/SaveSettingsButton" to="." method="_on_save_pressed"]
+[connection signal="finished" from="AudioPlayer" to="." method="_on_audio_player_finished"]

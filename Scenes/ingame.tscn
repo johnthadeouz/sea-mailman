@@ -40,7 +40,7 @@ sky = SubResource("Sky_p0uuu")
 script = ExtResource("1_jy764")
 
 [node name="Ship" parent="." instance=ExtResource("1_oybcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 0.999998, 558.889)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -215.187, 0.999998, 335.955)
 
 [node name="WindMarker" type="Marker3D" parent="Ship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -70)
@@ -289,16 +289,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.337, 0, 356.351)
 [node name="Islands" type="Node3D" parent="Env"]
 
 [node name="Island1" parent="Env/Islands" instance=ExtResource("2_lq36l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 127.924)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 127.924)
 
 [node name="Island2" parent="Env/Islands" instance=ExtResource("3_mpua3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -225.452, 0, -82.3144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -225.452, 0.295, -82.314)
 
 [node name="Island3" parent="Env/Islands" instance=ExtResource("4_35pev")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.9896, 0, -353.26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.99, 0.315, -353.26)
 
 [node name="Island4" parent="Env/Islands" instance=ExtResource("5_jy764")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.395, 0, -191.751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.395, 0.35, -191.751)
 
 [node name="Island5" parent="Env/Islands" instance=ExtResource("6_csxpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.834, 0, 63.0592)
