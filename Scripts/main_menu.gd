@@ -14,8 +14,12 @@ const RESOLUTIONS = {
 	"1280x720": Vector2i(1280, 720)
 }
 
-func _ready() -> void:
-	pass
+#func _ready() -> void:
+	#load_ui_settings()
+#
+#
+#func load_ui_settings():
+	#
 
 # Close settings with escape
 func _unhandled_input(event: InputEvent) -> void:
